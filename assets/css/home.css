@@ -33,14 +33,14 @@ html, body {
     text-align: center;
     color: #fff;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     margin: 0 auto;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
 }
 
-.name {
+#name {
     font-size: 50px;
     display: inline;
     line-height: 1;
@@ -49,13 +49,13 @@ html, body {
 }
 
 @media only screen and (min-width:768px) {
-    .name {
+    #name {
         margin: 0;
         font-size: 86px
     }
 }
 
-.nickname {
+#nickname {
     position: relative;
     font-size: 20px;
     display: block;
@@ -65,34 +65,17 @@ html, body {
     font-family: 'Courgette', cursive;
 }
 
-.nickname:hover {
+#nickname:hover {
     color:rgba(255, 255, 0, 1);
 }
 
-.name:hover {
+#name:hover {
     color: rgba(0, 0, 0, 1);
 }
 
 @media only screen and (min-width:768px) {
-    .nickname {
+    #nickname {
         font-size: 42px
-    }
-}
-
-.header-links {
-    margin: 10px
-}
-
-.header-links .link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    margin: 10px
-}
-
-@media only screen and (min-width:768px) {
-    .header-links .link {
-        font-size: 20px
     }
 }
 
@@ -109,7 +92,6 @@ html, body {
     margin: none
 }
 
-.down,
 .header-icons .icon {
     color: #000;
     text-align: center

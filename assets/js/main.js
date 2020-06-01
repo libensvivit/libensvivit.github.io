@@ -138,9 +138,7 @@ var pitch = 0, collapsed = false, EPICYCLES;
             loadMusicSync();
             $("#spotify_logo").remove();
         },
-        Unload: function(){
-            //
-        }
+        Unload: null,
     }
     
     var loadUpdateTime = function(){
@@ -206,8 +204,7 @@ var Objects = {
                 let link = '<link rel="stylesheet" type="text/css" href="/assets/css/home.css">';
                 $("head").append(link);
             }
-            $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=loadSpotify()>"));
-            //if(!isMobile) loadSpotify();
+            $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=Spotify.Load()>"));
             loadUpdateTime();
         },
         Unload : function(){

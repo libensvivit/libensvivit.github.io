@@ -1,0 +1,67 @@
+#linkbox{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#linkbox::-webkit-scrollbar{
+  display: none;
+}
+
+#linkbox{
+  font-family: Montserrat, sans-serif;
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  top: 0px;
+  bottom: 0px;
+  width: auto;
+  height: auto;
+  transition: margin 0.3s ease;
+}
+
+
+.link{
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+}
+
+.box{
+  position: relative;
+  padding: 0px 10px 0px 10px;
+  border-radius: 3px;
+  margin: 8px 10px 8px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  transition: margin 0.3s ease,
+              color 0.5s ease;
+}
+
+
+@media only screen and (min-width:768px) {
+  .link {
+      font-size: 35px;
+  }
+
+  .box{
+    margin: 15px 10px 15px 10px;
+  }
+}
+
+@keyframes expand {
+  0% {
+    top: 0;
+    left: 0;
+  }
+
+  30% {
+    top: 50px;
+  }
+
+  68%, 72%{
+    left: 50px;
+  }
+  100% {
+    top: 100px;
+    left: 100%;
+  }
+}

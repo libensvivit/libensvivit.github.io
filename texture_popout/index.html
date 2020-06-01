@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Texture 3D Pop-Out</title>
+		<meta property="og:image" content="cover.png"/>
+	</head>
+	<body>
+		<div id="form">
+			<p class="picker" id="picker">Chose a Picture or Video</p>
+			<input type="file" class="picker" accept="file_extension|video/*|image/*|media_type" id="userChoice">
+			<p class="depth">Adjust Depth</p>
+			<input class="depth" type="range" id="depth" max="100" min="0" value="20">
+			<p class="focus">Adjust Focal Range</p>
+			<input class="focus" type="range" id="distance" max="150" min="10" value="40">
+			<p id="instructions">Drag to rotate</p>
+			<p id="loading">Loading...</p>
+		</div>
+		<canvas id="canvas1" width="1100" height="1100"></canvas>
+		<img id='pic' src="pic.jpg">
+		<video controls loop id="vid" width="100" height="100">
+            		<source src="sample.mp4" type="video/mp4">
+        	</video>
+		<style>
+			#loading{
+				position: fixed;
+				bottom: 50%;
+				right: 50%;
+				color: white;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			#instructions {
+				position: fixed;
+				bottom: 5px;
+				right: 5px;
+				color: white;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			p {
+				padding: 5px;
+			}
+			.picker {
+				position: fixed;
+				color: white;
+				left: 10px;
+				top: 10px;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.depth {
+				position: fixed;
+				color: white;
+				top: 10px;
+				right:10px;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			.focus {
+				position: fixed;
+				color: white;
+				top: 50px;
+				right:10px;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			#pic {
+				visibility: hidden;
+				display: none;
+			}
+			#vid {
+				position: fixed;
+				visibility: hidden;
+				display: none;
+				left: 0;
+				bottom: 0;
+				height: 10px;
+				width: 100%;
+				z-index: +2;
+			}
+			#vid::media-controls {
+				visibility: visible;
+				display: block;
+				z-index: 0;
+			}
+			#canvas1 {
+				position: fixed;
+				left:0;
+				top:0;
+				z-index: -1;
+				width: 100%;
+				height: 100%;
+				background-color: black;
+			}
+			#form{
+				z-index: +2; 
+				opacity: .5;
+			}
+		</style>
+		<script src="utility.js"></script>
+		<script type="x-shader" id="vs1">
+			attribute vec2 vertexCoo;
+			uniform sampler2D uSampler;
+			uniform mat3 u_roty;
+			uniform mat3 u_rotx;
+			uniform float u_depth;
+			uniform float u_pixelSize;
+			uniform float u_distance;
+			uniform vec2 u_windowSize;
+			uniform vec2 u_textureSize;
+			#define E_PI 3.1415926535897932384626433832795028841971693993751058209749445923078164062
+			varying vec3 v_color;
+			varying float v_depth;
+			float sinus(vec3 a, vec3 b) {
+				return sin(E_PI / 2.0 - acos(dot(a, b)/(length(a)*length(b))));
+			}
+			
+			vec3 calc(vec2 vertexCoo, vec4 pix) {
+				vec3 cam = vec3(0.0, 0.0, -u_distance);
+				vec3 up = vec3(0.0, 1.0, 0.0);
+				vec3 right = vec3(1.0, 0.0, 0.0);
+				vec3 b = vec3(vertexCoo, -u_depth*((pix.x) - 0.5));
+				b = u_roty * (u_rotx*b);
+				return vec3(u_distance*sinus(right, b - cam), u_distance*sinus(up, b - cam), (length(b - cam)-u_distance)/3.0);
+			}
+			void main() {
+				vec4 pix = texture2D(uSampler, (vec2(vertexCoo.x*u_textureSize.y/u_textureSize.x, -vertexCoo.y) + 1.0)/2.0);
+				vec3 a = calc(vertexCoo, pix);
+				gl_Position = vec4(a.x * u_windowSize.y/u_windowSize.x, a.y, a.z, 1.0);
+				gl_PointSize = u_pixelSize;
+				v_color = pix.xyz;
+				v_depth = a.z;
+			}
+		</script>
+		<script type="x-shader" id="fs1">
+			#ifdef GL_FRAGMENT_PRECISION_HIGH
+				precision highp float;
+			#else
+				precision mediump float;
+			#endif
+			varying vec3 v_color;
+			varying float v_depth;
+			void main() {
+				gl_FragColor = vec4(v_color.xyz, 1.0);
+			}
+		</script>
+			
+		<script>
+			window.mobileAndTabletcheck = function() {
+			  var check = false;
+			  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
+			  return check;
+			};
+			function getExtension(filename) {
+				var parts = filename.split('.');
+				return parts[parts.length - 1];
+			}
+			function isVideo(filename) {
+				var ext = getExtension(filename);
+				switch (ext.toLowerCase()) {
+				case 'm4v':
+				case 'avi':
+				case 'mpg':
+				case 'mp4':
+				case 'mov':
+					// etc
+					return true;
+				}
+				return false;
+			}
+			function isImage(filename) {
+				var ext = getExtension(filename);
+				switch (ext.toLowerCase()) {
+				case 'jpg':
+				case 'jpeg':
+				case 'png':
+				case 'gif':
+					// etc
+					return true;
+				}
+				return false;
+			}
+			var depthInput = document.getElementById('depth'),
+				distanceInput = document.getElementById('distance'),
+				fileInput = document.getElementById('userChoice'),
+				inputElement = {},
+				MOBILE, 
+				reader = {};
+			if (window.mobileAndTabletcheck()) {
+				inputElement = document.getElementById('pic');
+				inputElement.onload = videoGo;
+				MOBILE = true;
+				document.getElementById('picker').innerHTML="Chose a Picture";
+			} else {
+				inputElement = document.getElementById('vid');
+				inputElement.addEventListener('loadeddata', videoGo);
+				MOBILE = false;
+			}
+			
+			
+			function videoGo() {
+				var loading = document.getElementById('loading');
+				loading.style.display = 'none';
+				var SIZE = 256*2;
+				if(!MOBILE) {
+					inputElement.play();
+				}
+				function getContext(w, verts, itemSize) {
+					this.canvas = document.getElementById('canvas' + w);
+					if (!w) {
+						this.canvas.width = SIZE;
+						this.canvas.height = SIZE;
+					}
+					this.vs = document.getElementById('vs' + w).textContent;
+					this.fs = document.getElementById('fs' + w).textContent;
+					this.vertices = new Float32Array(verts);
+					this.gl = this.canvas.getContext('experimental-webgl');
+					this.vertexPosBuffer = this.gl.createBuffer();
+					this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vertexPosBuffer);
+					this.gl.bufferData(this.gl.ARRAY_BUFFER, this.vertices, this.gl.STATIC_DRAW);
+					this.vertexPosBuffer.itemSize = itemSize;
+					this.vertexPosBuffer.numItems = this.vertices.length / itemSize;
+					this.program = createProgram(this.vs, this.fs, this.gl);
+					this.gl.useProgram(this.program);
+					this.program.vertexPosAttrib = this.gl.getAttribLocation(this.program, 'vertexCoo');
+					this.gl.enableVertexAttribArray(this.program.vertexPosArray);
+					this.gl.vertexAttribPointer(this.program.vertexPosAttrib, this.vertexPosBuffer.itemSize, this.gl.FLOAT, false, 0, 0);
+					this.program.canvasSizeUniform = this.gl.getUniformLocation(this.program, 'u_canvasSize');
+					this.gl.uniform2f(this.program.canvasSizeUniform, this.canvas.width, this.canvas.height);
+				}
+				var ctx = ['none'];
+				var q = new Array(SIZE*SIZE*2);
+				var b = q.length;
+				var i,j,k=0;
+				for (i = 0; i < SIZE; i += 1) {
+					for (j = 0; j < SIZE; j += 1) {
+						q[k] = (j / SIZE) * 2 - 1;
+						q[k + 1] = (i / SIZE) * 2 - 1;
+						k += 2;
+					}
+				}
+				ctx.push(new getContext(1, q, 2));
+				ctx[1].texture = ctx[1].gl.createTexture();
+				ctx[1].gl.bindTexture(ctx[1].gl.TEXTURE_2D, ctx[1].texture);
+				ctx[1].gl.texImage2D(ctx[1].gl.TEXTURE_2D, 0, ctx[1].gl.RGBA, ctx[1].gl.RGBA, ctx[1].gl.UNSIGNED_BYTE, inputElement);
+				ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D,ctx[1].gl.TEXTURE_MAG_FILTER,ctx[1].gl.NEAREST);
+				ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D,ctx[1].gl.TEXTURE_MIN_FILTER,ctx[1].gl.NEAREST);
+				ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D, ctx[1].gl.TEXTURE_WRAP_S, ctx[1].gl.CLAMP_TO_EDGE);
+				ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D, ctx[1].gl.TEXTURE_WRAP_T, ctx[1].gl.CLAMP_TO_EDGE);
+				ctx[1].program.rotY = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_roty');
+				ctx[1].program.rotX = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_rotx');
+				ctx[1].program.depth = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_depth');
+				ctx[1].program.distance = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_distance');
+				ctx[1].program.pixelSize = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_pixelSize');
+				ctx[1].program.windowSize = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_windowSize');
+				ctx[1].program.textureSize = ctx[1].gl.getUniformLocation(ctx[1].program, 'u_textureSize');
+				ctx[1].gl.clearColor(0,0,0,1);
+				ctx[1].gl.enable(ctx[1].gl.DEPTH_TEST);
+				ctx[1].gl.depthFunc(ctx[1].gl.LESS);
+				var thetay = 0, thetax = 0, dy = 0, dx = 0.005, friction = 1, val= -1.0;
+				function rotatex(theta) {
+					return [Math.cos(theta), 0, -Math.sin(theta), 0,1,0,Math.sin(theta),0,Math.cos(theta)];
+				}
+				function rotatey(theta) {
+					return [1,0,0,0,Math.cos(theta),Math.sin(theta), 0,-Math.sin(theta),Math.cos(theta)];
+				}
+				function animate() {
+					window.requestAnimationFrame(animate);
+					
+					dy *= friction;
+					dx *= friction;
+					thetay += dy;
+					thetax += dx;
+					
+					ctx[1].gl.clear(ctx[1].gl.COLOR_BUFFER_BIT | ctx[1].gl.DEPTH_BUFFER_BIT);
+					ctx[1].gl.uniformMatrix3fv(ctx[1].program.rotY, false, rotatey(thetay));
+					ctx[1].gl.uniformMatrix3fv(ctx[1].program.rotX, false, rotatex(thetax));
+					ctx[1].gl.uniform1f(ctx[1].program.depth, depthInput.value/100);
+					ctx[1].gl.uniform1f(ctx[1].program.distance, distanceInput.value/10);
+					ctx[1].gl.uniform1f(ctx[1].program.pixelSize, 2.1);
+					ctx[1].gl.uniform2f(ctx[1].program.windowSize, window.innerWidth, window.innerHeight);
+					ctx[1].gl.uniform2f(ctx[1].program.textureSize, inputElement.width, inputElement.height);
+					ctx[1].gl.texImage2D(ctx[1].gl.TEXTURE_2D, 0, ctx[1].gl.RGBA, ctx[1].gl.RGBA, ctx[1].gl.UNSIGNED_BYTE, inputElement);
+					ctx[1].gl.bindTexture(ctx[1].gl.TEXTURE_2D, ctx[1].texture);
+					ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D,ctx[1].gl.TEXTURE_MAG_FILTER,ctx[1].gl.NEAREST);
+					ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D,ctx[1].gl.TEXTURE_MIN_FILTER,ctx[1].gl.NEAREST);
+					ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D, ctx[1].gl.TEXTURE_WRAP_S, ctx[1].gl.CLAMP_TO_EDGE);
+					ctx[1].gl.texParameteri(ctx[1].gl.TEXTURE_2D, ctx[1].gl.TEXTURE_WRAP_T, ctx[1].gl.CLAMP_TO_EDGE);
+					ctx[1].gl.drawArrays(ctx[1].gl.POINTS, 0, ctx[1].vertexPosBuffer.numItems);
+				}
+				
+				animate();
+				function readeronload (e) {
+					if(isVideo(fileInput.files[0].name) && !MOBILE) {
+						inputElement = document.getElementById('vid');
+						inputElement.src = e.target.result;
+						inputElement.play();
+					} else if (isImage(fileInput.files[0].name)) {
+						document.getElementById('vid').pause();
+						inputElement = document.getElementById('pic');
+						inputElement.setAttribute('src', e.target.result);
+					} else if (isVideo(fileInput.files[0].name)) {
+						alert ('Sorry, no videos on mobile');
+					} else {
+						alert ('Sorry, not an acceptable file type');
+					}
+				}
+				fileInput.onchange = function () {
+					reader = new FileReader();
+					reader.onload = readeronload;
+					reader.readAsDataURL(fileInput.files[0]);
+					
+				}
+				document.onkeydown = function (e) {
+					e.preventDefault();
+					if (e.which === 37) {
+						friction = 0.9;
+						dx += 0.01;
+					} else if (e.which === 39) {
+						dx -= 0.01;
+						friction = 0.9;
+					} else if (e.which === 38) {
+						friction = 0.9;
+						dy += 0.01;
+					} else if (e.which === 40) {
+						dy -= 0.01;
+						friction = 0.9;
+					} else if (e.which === 32) {
+						
+					}
+				}
+				
+				var last = {};
+				ctx[1].canvas.addEventListener('touchstart', function(e){
+					friction = 0.9;
+					last.x = e.touches[0].pageX;
+					last.y = e.touches[0].pageY;
+					e.preventDefault();
+				}, false);
+				ctx[1].canvas.addEventListener('touchmove', function(e){
+					dx = -(e.touches[0].pageX - last.x)*0.01;
+					last.x = e.touches[0].pageX;
+					dy = -(e.touches[0].pageY - last.y)*0.01;
+					last.y = e.touches[0].pageY;
+					e.preventDefault();
+				}, false);
+				ctx[1].canvas.addEventListener('touchend', function(e){
+					e.preventDefault();
+				}, false);
+				
+				var MOUSEDOWN = false;
+				ctx[1].canvas.onmousedown = function(e){
+					friction = 0.9;
+					last.x = e.pageX;
+					last.y = e.pageY;
+					MOUSEDOWN = true;
+					e.preventDefault();
+				};
+				ctx[1].canvas.onmousemove = function(e){
+					if (MOUSEDOWN) {
+						dx = -(e.pageX - last.x)*0.01;
+						last.x = e.pageX;
+						dy = -(e.pageY - last.y)*0.01;
+						last.y = e.pageY;
+						e.preventDefault();
+					}
+					
+				};
+				ctx[1].canvas.onmouseout = function(e){
+					e.preventDefault();
+					MOUSEDOWN = false;
+				};
+				ctx[1].canvas.onmouseup = function(e){
+					e.preventDefault();
+					MOUSEDOWN = false;
+				};
+			}
+		</script>
+	</body>
+</html>

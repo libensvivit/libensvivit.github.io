@@ -154,6 +154,7 @@ html, body {
     border-radius: 50%;
     right: 5%;
     top: 5%;
+    transition: 0.5s ease;
 }
 
 #spotify_logo:hover{

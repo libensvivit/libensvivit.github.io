@@ -91,6 +91,22 @@ var Species = {
         name: "Four-toed hedgehog",
         link: "https://en.wikipedia.org/wiki/Four-toed_hedgehog",
     },
+
+    poecilotheria_metallica: {
+        scientific: "Poecilotheria metallica",
+        image: "poecilotheria_metallica.jpg",
+        credit: "Image credit: MLursus on flickr",
+        name: "Gooty sapphire ornamental",
+        link: "https://en.wikipedia.org/wiki/Poecilotheria_metallica",
+    },
+
+    pitohui_dichrous: {
+        scientific: "Pitohui dichrous",
+        image: "pitohui_dichrous.png",
+        credit: "Image credit: Markus Lilje on flickr",
+        name: "Hooded pitohui",
+        link: "https://en.wikipedia.org/wiki/Hooded_pitohui",
+    },
 }
 
 var randomList = [];

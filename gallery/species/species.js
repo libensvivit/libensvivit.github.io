@@ -107,6 +107,14 @@ var Species = {
         name: "Hooded pitohui",
         link: "https://en.wikipedia.org/wiki/Hooded_pitohui",
     },
+
+    thalassoma_purpureum: {
+        scientific: "Thalassoma purpureum",
+        image: "thalassoma_purpureum.png",
+        credit: "Image credit: Inger Vandyke",
+        name: "Surge wrasse",
+        link: "https://en.wikipedia.org/wiki/Surge_wrasse",
+    }
 }
 
 var randomList = [];

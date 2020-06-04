@@ -41,6 +41,7 @@ d3.json('tree_of_life/data.json')
         .attr('font-size', d => 2.1 - d.depth/2.8 + 'em')
         .text(d => d.data.data.id)
         .on('click', function(d){
-          window.open("https://en.wikipedia.org/wiki/" + d.data.data.id);
+          let href = "https://en.m.wikipedia.org/wiki/" + d.data.data.id;
+          window.open(href, height=200, width=100);
         });
 });

@@ -9,6 +9,8 @@
 
 var currentLoader = "Home", analyser = null, context = null, loadMusicSync = null;
 var pitch = 0, collapsed = false, EPICYCLES;
+var width = document.body.clientWidth;
+var height = document.body.clientHeight;
 
 // INPUT LIVE AUDIO
 {
@@ -173,6 +175,7 @@ var Objects = {
                 switch(currentLoader){
                     case "Epicycles": Objects.Epicycles.Unload();
                     case "Shaders": Objects.Shaders.Unload();
+                    case "Tree of Life": Objects.Tree_Of_Life.Unload();
                 }
             }
             if(currentLoader !== "Home") Objects.Home.Load();
@@ -354,8 +357,6 @@ var Objects = {
                 async: false
             }).done(function(data){
                 Sidebar.Collapse();
-                width = document.body.clientWidth;
-                height = document.body.clientHeight;
             });
         },
         Unload: function(){

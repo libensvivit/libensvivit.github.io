@@ -1,6 +1,4 @@
 var svg = d3.select('svg');
-var width = document.body.clientWidth;
-var height = document.body.clientHeight;
 
 var margin = { top: 0, right: 150, bottom: 0, left: 150};
 var innerWidth = width - margin.left - margin.right;

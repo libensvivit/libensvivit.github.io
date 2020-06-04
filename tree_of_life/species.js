@@ -2,7 +2,7 @@ const svg = d3.select('svg');
 const width = document.body.clientWidth;
 const height = document.body.clientHeight;
 
-const margin = { top: 0, right: 50, bottom: 0, left: 75};
+const margin = { top: 0, right: 150, bottom: 0, left: 150};
 const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 
@@ -34,11 +34,15 @@ d3.json('data.json')
         .attr('d', linkPathGenerator);
   
     g.selectAll('text').data(root.descendants())
-      .enter().append('text')
+      .enter()
+      .append('text')
         .attr('x', d => d.y)
         .attr('y', d => d.x)
         .attr('dy', '0.32em')
         .attr('text-anchor', d => d.children ? 'middle' : 'start')
-        .attr('font-size', d => 3.25 - d.depth + 'em')
-        .text(d => d.data.data.id);
-  });
+        .attr('font-size', d => 2.1 - d.depth/2.8 + 'em')
+        .text(d => d.data.data.id)
+        .on('click', function(d){
+          window.open("https://en.wikipedia.org/wiki/" + d.data.data.id);
+        });
+});

@@ -6,6 +6,7 @@ body {
     bottom: 0;
     margin: 0;
     overflow: hidden;
+    user-select: none;
   }
   
 path {
@@ -19,6 +20,5 @@ text-shadow:
     -1px  1px 3px white,
     1px -1px 3px white,
     1px  1px 3px white;
-pointer-events: none;
 font-family: 'Playfair Display', serif;
 }

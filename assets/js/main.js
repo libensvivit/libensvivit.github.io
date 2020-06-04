@@ -221,7 +221,7 @@ var Objects = {
     },
     
     Species: {
-        name: "Species Gallery", href: "/gallery/species/"
+        name: "Species μGallery", href: "/gallery/species/"
     },
     
     Epicycles: {
@@ -354,6 +354,8 @@ var Objects = {
                 async: false
             }).done(function(data){
                 Sidebar.Collapse();
+                width = document.body.clientWidth;
+                height = document.body.clientHeight;
             });
         },
         Unload: function(){

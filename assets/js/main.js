@@ -370,7 +370,7 @@ var Objects = {
 // ON FIRST LOAD //
 {
     // RANDOM BACKGROUND SELECTOR
-    var N = 15;
+    var N = 14;
     var full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
     var bg_style = isMobile ? "background-image:url('/assets/background-img-resized/bg1_resized.webp');" : "background-image: url(" + full_IMG + ");";
     $("#particles-js").attr("style", bg_style);

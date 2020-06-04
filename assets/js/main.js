@@ -341,7 +341,25 @@ var Objects = {
     },
 
     Tree_Of_Life: {
-        name: "Tree of Life", href: "/tree_of_life/"
+        name: "Tree of Life", href: null,
+        Load: function(){
+            Objects.Home.Unload();
+            currentLoader = "Tree of Life";
+            $("#holder").append("<svg>");
+            $("head").append('<link rel="stylesheet" type="text/css" href="/tree_of_life/style.css">');
+
+            $.ajax({
+                url: '/tree_of_life/species.js',
+                type: 'GET',
+                async: false
+            }).done(function(data){
+                Sidebar.Collapse();
+            });
+        },
+        Unload: function(){
+            $("#holder").text("");
+            $("link[href$='/tree_of_life/style.css']").remove();
+        }
     }
 }
 

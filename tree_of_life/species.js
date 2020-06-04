@@ -1,19 +1,19 @@
-const svg = d3.select('svg');
-const width = document.body.clientWidth;
-const height = document.body.clientHeight;
+var svg = d3.select('svg');
+var width = document.body.clientWidth;
+var height = document.body.clientHeight;
 
-const margin = { top: 0, right: 150, bottom: 0, left: 150};
-const innerWidth = width - margin.left - margin.right;
-const innerHeight = height - margin.top - margin.bottom;
+var margin = { top: 0, right: 150, bottom: 0, left: 150};
+var innerWidth = width - margin.left - margin.right;
+var innerHeight = height - margin.top - margin.bottom;
 
-const treeLayout = d3.tree().size([innerHeight, innerWidth]);
+var treeLayout = d3.tree().size([innerHeight, innerWidth]);
 
-const zoomG = svg
+var zoomG = svg
     .attr('width', width)
     .attr('height', height)
   .append('g');
 
-const g = zoomG.append('g')
+  var g = zoomG.append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`);
 
 // ZOOM & PANNING
@@ -21,11 +21,11 @@ svg.call(d3.zoom().on('zoom', () => {
   zoomG.attr('transform', d3.event.transform);
 }));
 
-d3.json('data.json')
+d3.json('tree_of_life/data.json')
   .then(data => {
-    const root = d3.hierarchy(data);
-    const links = treeLayout(root).links();
-    const linkPathGenerator = d3.linkHorizontal()
+    var root = d3.hierarchy(data);
+    var links = treeLayout(root).links();
+    var linkPathGenerator = d3.linkHorizontal()
       .x(d => d.y)
       .y(d => d.x);
   

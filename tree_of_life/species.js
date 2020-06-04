@@ -6,7 +6,6 @@ var innerHeight = height - margin.top - margin.bottom;
 
 var treeLayout = d3.tree().size([innerHeight, innerWidth]);
 
-
 var zoomG = svg
     .attr('width', width)
     .attr('height', height)

@@ -155,6 +155,7 @@ html, body {
     right: 5%;
     top: 5%;
     transition: 0.5s ease;
+    display: none;
 }
 
 #spotify_logo:hover{

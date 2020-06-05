@@ -176,6 +176,7 @@ var Objects = {
                     case "Epicycles": Objects.Epicycles.Unload();
                     case "Shaders": Objects.Shaders.Unload();
                     case "Tree of Life": Objects.Tree_Of_Life.Unload();
+                    case "Species μGallery": Objects.Species.Unload();
                 }
             }
             if(currentLoader !== "Home") Objects.Home.Load();
@@ -224,7 +225,26 @@ var Objects = {
     },
     
     Species: {
-        name: "Species μGallery", href: "/gallery/species/"
+        name: "Species μGallery", href: null,
+        Load: function(){
+            Objects.Home.Unload();
+            currentLoader = "Species μGallery";
+            $("#holder").append("<div class='wrapper'>");
+
+            $.ajax({
+                url: '/gallery/species/species.js',
+                type: 'GET',
+                async: false
+            }).done(function(data){
+                Sidebar.Collapse();
+                let link = '<link rel="stylesheet" type="text/css" href="/gallery/species/species.css">';
+                $("head").append(link)
+            });
+        },
+        Unload: function(){
+            $(".wrapper").remove();
+            $("link[href$='/gallery/species/species.css']").remove();
+        }
     },
     
     Epicycles: {
@@ -233,7 +253,7 @@ var Objects = {
             Objects.Home.Unload();
             currentLoader = "Epicycles";
 
-            $("#holder").append($("<div>").attr("id","sketch-holder"));
+            $("#holder").append("<div id='sketch-holder'>");
             $("#holder").append("<div id='ui'>");
             
             $("body").append($("<img>").attr("src","/epicycles/replay.png").attr("id","replay"));

@@ -8,6 +8,7 @@
 }
 
 #linkbox{
+    user-select: none;
     font-family: Montserrat, sans-serif;
     position: absolute;
     overflow-y: scroll;

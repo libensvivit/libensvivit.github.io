@@ -75,5 +75,12 @@
       "credit":"Image credit: James Rosindell",
       "name":"Leafy seadragon",
       "link":"https://en.wikipedia.org/wiki/Leafy_seadragon"
+   },
+   "maratus_hortorum":{
+      "scientific":"Maratus hortorum",
+      "image":"maratus_hortorum.jpg",
+      "credit":"Image credit: Michael Doe",
+      "name":"Peacock spider",
+      "link":"https://en.wikipedia.org/wiki/Maratus"
    }
 }

@@ -146,7 +146,7 @@ var height = document.body.clientHeight;
     var loadUpdateTime = function(){
         $("#holder")
             .append($("<div id='update'>")
-                .append($("<span>").text("Updated on: "))
+                .append($("<span>").text("Last update: "))
                 .append($("<span>").text(__PUSHTIME__)));
     }
 }

@@ -172,17 +172,12 @@ var Objects = {
             if(!collapsed) Sidebar.Collapse();
             else {
                 Sidebar.Expand();
-                switch(currentLoader){
-                    case "Epicycles": Objects.Epicycles.Unload();
-                    case "Shaders": Objects.Shaders.Unload();
-                    case "Tree of Life": Objects.Tree_Of_Life.Unload();
-                    case "Species μGallery": Objects.Species.Unload();
-                }
+                Objects[currentLoader.split(' ').join('_')].Unload();
             }
             if(currentLoader !== "Home") Objects.Home.Load();
         },
         Load : function(){
-            currentLoader = "Home";
+            currentLoader = this.innerHTML;
             let full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
             bg_style = "background-image: url(" + full_IMG + ");";
 
@@ -224,11 +219,11 @@ var Objects = {
         name: "About Me", href: "http://achmet.tachsin.com/"
     },
     
-    Species: {
-        name: "Species μGallery", href: null,
+    Species_μGallery: {
+        name: "Species μGallery", href: null, 
         Load: function(){
             Objects.Home.Unload();
-            currentLoader = "Species μGallery";
+            currentLoader = this.innerHTML;
             $("#holder").append("<div class='wrapper'>");
 
             $.ajax({
@@ -251,7 +246,7 @@ var Objects = {
         name: "Epicycles", href: null,
         Load: function(){
             Objects.Home.Unload();
-            currentLoader = "Epicycles";
+            currentLoader = this.innerHTML;
 
             $("#holder").append("<div id='sketch-holder'>");
             $("#holder").append("<div id='ui'>");
@@ -289,7 +284,7 @@ var Objects = {
         name: "Electric Field", href: "/electric_field/",
         Load: function(){
             Objects.Home.Unload();
-            currentLoader = "Electric Field";
+            currentLoader = this.innerHTML;
 
             $("#holder").append($("<div>")
                 .append($("<button>").attr("id","chargePositive").text("Add + Charge"))
@@ -342,7 +337,7 @@ var Objects = {
         name: "Shaders", href: null,
         Load: function(){
             Objects.Home.Unload();
-            currentLoader = "Shaders";
+            currentLoader = this.innerHTML;;
     
             $("#holder").append("<div class='slides'>");
             $(".slides").append("<div id='navbox'>");
@@ -363,11 +358,12 @@ var Objects = {
         }
     },
 
-    Tree_Of_Life: {
+    Tree_of_Life: {
         name: "Tree of Life", href: null,
         Load: function(){
             Objects.Home.Unload();
-            currentLoader = "Tree of Life";
+            currentLoader = this.innerHTML;
+            
             $("#holder").append("<svg>");
             $("head").append('<link rel="stylesheet" type="text/css" href="/tree_of_life/style.css">');
 

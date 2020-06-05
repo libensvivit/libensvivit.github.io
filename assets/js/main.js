@@ -382,7 +382,6 @@ var Objects = {
     }
 }
 
-
 // ON FIRST LOAD //
 {
     // RANDOM BACKGROUND SELECTOR

@@ -183,7 +183,7 @@ var Objects = {
         Load : function(){
             currentLoader = "Home";
             let full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
-            let bg_style = isMobile ? "background-image:url('/assets/background-img-resized/bg1_resized.webp');" : "background-image: url(" + full_IMG + ");";
+            bg_style = "background-image: url(" + full_IMG + ");";
 
             $("#holder").html("").append($("<div>").attr("id","particles-js"));
             particlesJS.load("particles-js", "assets/particlesjs-config.json", 0);

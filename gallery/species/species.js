@@ -117,7 +117,13 @@ var Species = {
         link: "https://en.wikipedia.org/wiki/Surge_wrasse",
     },
 
-
+    phycodurus_eques: {
+        scientific: "Phycodurus eques",
+        image: "phycodurus_eques.jpg",
+        credit: "Image credit: James Rosindell",
+        name: "Leafy seadragon",
+        link: "https://en.wikipedia.org/wiki/Leafy_seadragon",
+    },
 }
 
 var randomList = [];

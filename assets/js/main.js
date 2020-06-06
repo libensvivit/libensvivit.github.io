@@ -184,7 +184,7 @@ var Objects = {
             let full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
             bg_style = "background-image: url(" + full_IMG + ");";
             $("#holder").fadeOut({
-                duration: 50,
+                duration: 100,
                 complete: function(){
                     $("#holder").html("").append($("<div id='particles-js'>"));
                     particlesJS.load("particles-js", "assets/particlesjs-config.json", 0);
@@ -212,7 +212,7 @@ var Objects = {
                     
                     $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=Spotify.Load()>"));
                     loadUpdateTime();
-                    $("#holder").fadeIn({duration: 100});
+                    $("#holder").fadeIn({duration: 150});
                 }
             });
             

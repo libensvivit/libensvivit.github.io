@@ -276,11 +276,11 @@ var Objects = {
     },
     
     Solar_System: {
-        name: "Solar System", href: "/solar_system/"
+        name: "Solar System", href: "/solar_system/",
     },
 
     Voxel_Buffer: {
-        name: "Voxel Buffer", href: "/voxel_buffer/"
+        name: "Voxel Buffer", href: "/voxel_buffer/",
     },
     
     Electric_Field: {
@@ -288,7 +288,7 @@ var Objects = {
     },
     
     Texture_Popout: {
-        name: "Texture Pop-Out", href: "/texture_popout/"
+        name: "Texture Pop-Out", href: "/texture_popout/",
     },
 
     Shaders: {

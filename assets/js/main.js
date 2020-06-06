@@ -183,42 +183,50 @@ var Objects = {
             currentLoader = this.innerHTML;
             let full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
             bg_style = "background-image: url(" + full_IMG + ");";
+            $("#holder").fadeOut({
+                duration: 50,
+                complete: function(){
+                    $("#holder").html("").append($("<div id='particles-js'>"));
+                    particlesJS.load("particles-js", "assets/particlesjs-config.json", 0);
+                    $("#particles-js").attr("style", bg_style);
+        
+                    if(!$("link[href$='/assets/css/home.css']").length){
+                        let link = '<link rel="stylesheet" type="text/css" href="/assets/css/home.css">';
+                        $("head").append(link);
+                    }
 
-            $("#holder").html("").append($("<div>").attr("id","particles-js"));
-            particlesJS.load("particles-js", "assets/particlesjs-config.json", 0);
-            $("#particles-js").attr("style", bg_style);
-
-            $("#particles-js")
-                .append($("<div class='header'>")
-                    .append($("<h1>")
-                        .append($("<span id='name'>").text("Achmet"))
-                        .append($("<span id='name'>").text(" Tachsin"))
-                        .append($("<span id='nickname'>").text("Mr. Fettuccine")))
-                    .append($("<div class='header-icons'>")
-                        .append($("<a id='twitter' href='https://twitter.com/libensvivit' target='_blank'>")
-                            .append($("<i class='icon fa fa-twitter'>")))
-                        .append($("<a id='github' href='https://github.com/libensvivit' target='_blank'>")
-                            .append($("<i class='icon fa fa-github-alt'>")))
-                        .append($("<a id='linkedin' href='https://linkedin.com/in/achmet-tachsin-081228170/' target='_blank'>")
-                            .append($("<i class='icon fa fa-linkedin-square'>")))));
+                    $("#particles-js")
+                        .append($("<div class='header'>")
+                            .append($("<h1>")
+                                .append($("<span id='name'>").text("Achmet"))
+                                .append($("<span id='name'>").text(" Tachsin"))
+                                .append($("<span id='nickname'>").text("Mr. Fettuccine")))
+                            .append($("<div class='header-icons'>")
+                                .append($("<a id='twitter' href='https://twitter.com/libensvivit' target='_blank'>")
+                                    .append($("<i class='icon fa fa-twitter'>")))
+                                .append($("<a id='github' href='https://github.com/libensvivit' target='_blank'>")
+                                    .append($("<i class='icon fa fa-github-alt'>")))
+                                .append($("<a id='linkedin' href='https://linkedin.com/in/achmet-tachsin-081228170/' target='_blank'>")
+                                    .append($("<i class='icon fa fa-linkedin-square'>")))));
+                            
                     
-            if(!$("link[href$='/assets/css/home.css']").length){
-                let link = '<link rel="stylesheet" type="text/css" href="/assets/css/home.css">';
-                $("head").append(link);
-            }
-            $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=Spotify.Load()>"));
-            loadUpdateTime();
+                    $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=Spotify.Load()>"));
+                    loadUpdateTime();
+                    $("#holder").fadeIn({duration: 100});
+                }
+            });
+            
         },
         Unload : function(){
             $("#holder").fadeOut({
                 duration: 200,
                 complete: function(){
                     $("#particles-js").remove();
-                $("#update").remove();
-                $("link[href$='/assets/css/home.css']").remove()
-                $("#spotify_logo").remove();
-                if(!isMobile) $("#spotify").remove();
-                $("#holder").fadeIn({duration:200});
+                    $("#update").remove();
+                    $("link[href$='/assets/css/home.css']").remove()
+                    $("#spotify_logo").remove();
+                    if(!isMobile) $("#spotify").remove();
+                    $("#holder").fadeIn({duration:300});
                 }
             })
         }

@@ -12,7 +12,7 @@ var pitch = 0, collapsed = false, EPICYCLES;
 var width = document.body.clientWidth;
 var height = document.body.clientHeight;
 
-// INPUT LIVE AUDIO
+// INPUT LIVE AUDIO //
 {
     
     var buf = new Float32Array(1024);
@@ -246,7 +246,7 @@ var Objects = {
             $.ajax({
                 url: '/gallery/species/species.js',
                 type: 'GET',
-                async: false
+                async: true
             }).done(function(data){
                 Sidebar.Collapse();
                 let link = '<link rel="stylesheet" type="text/css" href="/gallery/species/species.css">';
@@ -272,13 +272,13 @@ var Objects = {
             $.ajax({
                 url: '/epicycles/epicycles.js',
                 type: 'GET',
-                async: false
+                async: true
             }).done(function(data){
                 Sidebar.Collapse();
                 let link = '<link rel="stylesheet" type="text/css" href="/epicycles/epicycles.css">';
                 $("head").append(link);
+                EPICYCLES = new p5(sketch, 'sketch-holder');
             });
-            EPICYCLES = new p5(sketch, 'sketch-holder');
         },
         Unload: function(){
             if(typeof EPICYCLES !== "undefined") EPICYCLES.remove();
@@ -316,7 +316,7 @@ var Objects = {
             $.ajax({
                 url: '/gallery/shaders/shaders.js',
                 type: 'GET',
-                async: false
+                async: true
             }).done(function(data){
                 Sidebar.Collapse();
                 let link = '<link rel="stylesheet" type="text/css" href="/gallery/shaders/shaders.css">';
@@ -342,7 +342,7 @@ var Objects = {
             $.ajax({
                 url: '/tree_of_life/species.js',
                 type: 'GET',
-                async: false
+                async: true
             }).done(function(data){
                 Sidebar.Collapse();
             });

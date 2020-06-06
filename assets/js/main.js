@@ -172,9 +172,13 @@ var Objects = {
             if(!collapsed) Sidebar.Collapse();
             else {
                 Sidebar.Expand();
-                if(currentLoader !== "Home") Objects[currentLoader.split(' ').join('_')].Unload();;
+                if(currentLoader !== "Home") Objects[currentLoader.split(' ').join('_')].Unload();
             }
-            if(currentLoader !== "Home") Objects.Home.Load();
+            console.log(currentLoader);
+            if(currentLoader !== "Home"){
+                Objects.Home.Load();
+                currentLoader = "Home";
+            }
         },
         Load : function(){
             currentLoader = this.innerHTML;

@@ -349,7 +349,7 @@ var Objects = {
     $("#particles-js").attr("style", bg_style);
 
     // HOME BUTTON //
-    $("#linkbox").append($("<div class='box' id='home'>").text("Home").click(Objects.Home.Clicked));
+    $("#home").click(Objects.Home.Clicked);
     
     // SIDEBAR //
     for(obj of Objects){
@@ -357,7 +357,7 @@ var Objects = {
             if(!obj.href) obj.element = $("<div class='box'>").text(obj.name).click(obj.Load);
             else obj.element = $(`<div class='box' onclick=window.location='${obj.href}'>`).text(obj.name);
             
-            $("#linkbox").append(obj.element);
+            $("#sidebar").append(obj.element);
         }
     }
     

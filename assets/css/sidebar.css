@@ -1,7 +1,6 @@
 #linkbox{
     -ms-overflow-style: none;
     scrollbar-width: none;
-    display: none;
 }
 
 #linkbox::-webkit-scrollbar{

@@ -172,7 +172,7 @@ var Objects = {
             if(!collapsed) Sidebar.Collapse();
             else {
                 Sidebar.Expand();
-                Objects[currentLoader.split(' ').join('_')].Unload();
+                if(currentLoader !== "Home") Objects[currentLoader.split(' ').join('_')].Unload();;
             }
             if(currentLoader !== "Home") Objects.Home.Load();
         },
@@ -202,7 +202,6 @@ var Objects = {
             if(!$("link[href$='/assets/css/home.css']").length){
                 let link = '<link rel="stylesheet" type="text/css" href="/assets/css/home.css">';
                 $("head").append(link);
-                $("#holder").fadeIn({duration:300});
             }
             $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=Spotify.Load()>"));
             loadUpdateTime();
@@ -417,13 +416,6 @@ var Objects = {
             mouseleave: function(){ $(this).css({ color: "rgba(255, 255, 255, 1)" })}
         });
         $("body").append($("<img src='/assets/spotify.png' id='spotify_logo' onclick=Spotify.Load()>"));
-    
-        $(document).ready(function(){
-            let duration = 200;
-            $("#linkbox").fadeIn({duration:duration/3});
-            $("#holder").fadeIn({duration:duration});
-            $("#spotify_logo").fadeIn({duration:duration/3});
-        })
     }
 
     // MOBILE SPECIFIC LOAD //

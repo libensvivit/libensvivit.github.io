@@ -126,7 +126,7 @@ var height = document.body.clientHeight;
                 background: "rgba(0, 0, 0, 0.5)",
                 transition: "margin 0.3s ease, color 0s ease"
             });
-            for(obj of Objects) if(obj.href) obj.elem.attr("href", obj.href);
+            //for(obj of Objects) if(obj.href) obj.elem.attr("href", obj.href);
         
             collapsed = false;
         }
@@ -174,7 +174,6 @@ var Objects = {
                 Sidebar.Expand();
                 if(currentLoader !== "Home") Objects[currentLoader.split(' ').join('_')].Unload();
             }
-            console.log(currentLoader);
             if(currentLoader !== "Home"){
                 Objects.Home.Load();
                 currentLoader = "Home";
@@ -395,16 +394,15 @@ var Objects = {
     $("#particles-js").attr("style", bg_style);
 
     // HOME BUTTON //
-    $("#linkbox").append($("<a class='link'>").append($("<div class='box' id='home'>").text(Objects.Home.name).click(Objects.Home.Clicked)));
-
+    $("#linkbox").append($("<div class='box' id='home'>").text("Home").click(Objects.Home.Clicked));
+    
+    // SIDEBAR //
     for(obj of Objects){
-        if(obj.href){
-            obj.elem = $("<a class='link' href='" + obj.href + "'>").append($("<div class='box'>").text(obj.name));
-            $("#linkbox").append(obj.elem);
-        }
-
-        if(obj.Load && obj.name !== "Home" && obj.name !=="Electric Field"){
-            $("#linkbox").append($("<a class='link'>").append($("<div class='box'>").text(obj.name).click(obj.Load)));
+        if(obj.name != "Home"){
+            if(!obj.href) obj.element = $("<div class='box'>").text(obj.name).click(obj.Load);
+            else obj.element = $(`<div class='box' onclick=window.location='${obj.href}'>`).text(obj.name);
+            
+            $("#linkbox").append(obj.element);
         }
     }
     

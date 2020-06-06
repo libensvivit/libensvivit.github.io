@@ -20,14 +20,10 @@
     transition: margin 0.3s ease;
 }
 
-
-.link{
-    font-size: 24px;
-    text-decoration: none;
-    color: white;
-}
-
 .box{
+    /*text-decoration: none;*/
+    font-size: 24px;
+    color: white;
     position: relative;
     padding: 0px 10px 0px 10px;
     border-radius: 3px;
@@ -39,10 +35,6 @@
 
 
 @media only screen and (min-width:768px) {
-    .link {
-        font-size: 35px;
-    }
-
     .box{
         margin: 15px 10px 15px 10px;
     }

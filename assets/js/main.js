@@ -285,51 +285,6 @@ var Objects = {
     
     Electric_Field: {
         name: "Electric Field", href: "/electric_field/",
-        Load: function(){
-            Objects.Home.Unload();
-            currentLoader = this.innerHTML;
-
-            $("#holder").append($("<div>")
-                .append($("<button>").attr("id","chargePositive").text("Add + Charge"))
-                .append($("<button>").attr("id","chargeNegative").text("Add - Charge")));
-            $("#holder").append($("<canvas>").attr("id","canvas"));
-            $.ajax({
-                url: '/electric_field/js/sceneSubjects/GeneralLights.js',
-                type: 'GET',
-                success: function(){
-                    $.ajax({
-                        url: '/electric_field/js/sceneSubjects/SceneSubject.js',
-                        type: 'GET',
-                        success: function(){
-                            $.ajax({
-                                url: '/electric_field/js/SceneManager.js',
-                                type: 'GET',
-                                success: function(){
-                                    $.ajax({
-                                        url: '/electric_field/js/main.js',
-                                        type: 'GET',
-                                        async: false,
-                                        success: function(){
-                                            //console.log("We got everything");
-                                        }
-                                    })
-                                }
-                            })
-                        }
-                    })
-                }
-            }).done(function(data){
-                Sidebar.Collapse("Electric Field");
-                let link = '<link rel="stylesheet" type="text/css" href="/electric_field/style.css">';
-                $("head").append(link);
-            });
-        },
-        Unload: function(){
-            $("#canvas").remove();
-            $("#positiveCharge").remove();
-            $("#negativeCharge").remove();
-            $("link[href$='/electric_field/style.css']").remove();
-        }
     },
     
     Texture_Popout: {
@@ -387,7 +342,7 @@ var Objects = {
 
 // ON FIRST LOAD //
 {
-    // RANDOM BACKGROUND SELECTOR
+    // RANDOM WALLPAPER SELECTOR //
     var N = 14;
     var full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
     var bg_style = "background-image: url(" + full_IMG + ");";

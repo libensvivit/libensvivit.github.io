@@ -210,11 +210,17 @@ var Objects = {
             loadUpdateTime();
         },
         Unload : function(){
-            $("#particles-js").remove();
-            $("#update").remove();
-            $("link[href$='/assets/css/home.css']").remove()
-            $("#spotify_logo").remove();
-            if(!isMobile) $("#spotify").remove();
+            $("#holder").fadeOut({
+                duration: 200,
+                complete: function(){
+                    $("#particles-js").remove();
+                $("#update").remove();
+                $("link[href$='/assets/css/home.css']").remove()
+                $("#spotify_logo").remove();
+                if(!isMobile) $("#spotify").remove();
+                $("#holder").fadeIn({duration:200});
+                }
+            })
         }
     },
 

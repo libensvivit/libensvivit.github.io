@@ -17,12 +17,6 @@ function shuffle(array) {
     return array;
 }
 
-function GET_INFO(searchName){
-    let href = "https://en.m.wikipedia.org/wiki/" + searchName;
-    window.open(href, height=200, width=100).focus();
-    //window.open(theLink, '_blank').focus();
-}
-
 var randomList = [];
 $.getJSON("/gallery/species/species.json", d => {
     $.each(d, function(key, val){ randomList.push(val); });
@@ -36,6 +30,6 @@ $.getJSON("/gallery/species/species.json", d => {
                 $("<div class='text'>").text(randomList[i].scientific)).append(
                 $("<img src='/gallery/species/images/" + randomList[i].image + "' title='" + randomList[i].credit + "'>")).append(
                 $("<p>").text(randomList[i].name))
-        )
+        );
     }
 });

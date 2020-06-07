@@ -3,84 +3,72 @@
       "scientific":"Ailurus fulgens",
       "image":"ailurus_fulgens.webp",
       "credit":"Image credit: ARJUN THAPA, Institute of Zoology, Chinese Academy of Sciences.",
-      "name":"Himalayan red panda",
-      "link":"https://en.wikipedia.org/wiki/Red_panda"
+      "name":"Himalayan red panda"
    },
    "ailurus_styani":{
       "scientific":"Ailurus styani",
       "image":"ailurus_styani.webp",
       "credit":"Image credit: YUNFANG XIU, Straits (Fuzhou) Giant Panda Research and Exchange Center, China.",
-      "name":"Chinese red panda",
-      "link":"https://en.wikipedia.org/wiki/Red_panda"
+      "name":"Chinese red panda"
    },
    "ochotona_princeps":{
       "scientific":"Ochotona princeps",
       "image":"ochotona_princeps.webp",
       "credit":"Image credit: KEITH KOHL",
-      "name":"American pika",
-      "link":"https://en.wikipedia.org/wiki/American_pika"
+      "name":"American pika"
    },
    "ambystoma_mexicanum":{
       "scientific":"Ambystoma mexicanum",
       "image":"ambystoma_mexicanum.webp",
       "credit":"Image credit: JAN-PETER KASPER/CORBIS",
-      "name":"Mexican axolotl",
-      "link":"https://en.wikipedia.org/wiki/Axolotl"
+      "name":"Mexican axolotl"
    },
    "felis_margarita_thinobia":{
       "scientific":"Felis margarita thinobia",
       "image":"felis_margarita_thinobia.webp",
       "credit":"Image credit: PAYMAN SAZESH",
-      "name":"Turkestan sand cat",
-      "link":"https://en.wikipedia.org/wiki/Felis_margarita_thinobia"
+      "name":"Turkestan sand cat"
    },
    "vulpes_zerda":{
       "scientific":"Vulpes zerda",
       "image":"vulpes_zerda.webp",
       "credit":"Image credit: YVONNE N. in Willowick, USA",
-      "name":"Fennec fox",
-      "link":"https://en.wikipedia.org/wiki/Fennec_fox"
+      "name":"Fennec fox"
    },
    "atelerix_albiventris":{
       "scientific":"Atelerix albiventris",
       "image":"atelerix_albiventris.webp",
       "credit":"Image credit: ANYKA in Belgium",
-      "name":"Four-toed hedgehog",
-      "link":"https://en.wikipedia.org/wiki/Four-toed_hedgehog"
+      "name":"Four-toed hedgehog"
    },
    "poecilotheria_metallica":{
       "scientific":"Poecilotheria metallica",
       "image":"poecilotheria_metallica.webp",
       "credit":"Image credit: MLursus on flickr",
-      "name":"Gooty sapphire ornamental",
-      "link":"https://en.wikipedia.org/wiki/Poecilotheria_metallica"
+      "name":"Gooty sapphire ornamental"
    },
    "pitohui_dichrous":{
       "scientific":"Pitohui dichrous",
       "image":"pitohui_dichrous.webp",
       "credit":"Image credit: Markus Lilje on flickr",
-      "name":"Hooded pitohui",
-      "link":"https://en.wikipedia.org/wiki/Hooded_pitohui"
+      "name":"Hooded pitohui"
    },
    "thalassoma_purpureum":{
       "scientific":"Thalassoma purpureum",
       "image":"thalassoma_purpureum.webp",
       "credit":"Image credit: Inger Vandyke",
-      "name":"Surge wrasse",
-      "link":"https://en.wikipedia.org/wiki/Surge_wrasse"
+      "name":"Surge wrasse"
    },
    "phycodurus_eques":{
       "scientific":"Phycodurus eques",
       "image":"phycodurus_eques.webp",
       "credit":"Image credit: James Rosindell",
-      "name":"Leafy seadragon",
-      "link":"https://en.wikipedia.org/wiki/Leafy_seadragon"
+      "name":"Leafy seadragon"
    },
    "maratus_hortorum":{
       "scientific":"Maratus hortorum",
       "image":"maratus_hortorum.webp",
       "credit":"Image credit: Michael Doe",
-      "name":"Peacock spider",
-      "link":"https://en.wikipedia.org/wiki/Maratus"
+      "name":"Peacock spider"
    }
 }

@@ -82,12 +82,11 @@ var height = document.body.clientHeight;
         return -1;
     //	var best_frequency = sampleRate/best_offset;
     }
-
+    var bufTime = 0.0;
     function updatePitch(time){
         analyser.getFloatTimeDomainData(buf);
         var ac = autoCorrelate(buf, context.sampleRate);
-        if(ac !== -1 && ac <= 5000){
-            //console.log(ac);
+        if(ac !== -1 && ac < 5000){
             pitch = ac;
         }
         requestID = window.requestAnimationFrame(updatePitch);
@@ -99,7 +98,7 @@ var height = document.body.clientHeight;
             if($("#checkbox-music").prop("checked")){
                 context = new AudioContext();
                 await init({audio: true});
-                alert("under heavy development");
+                alert("experimental");
             } else{
                 window.cancelAnimationFrame(requestID);
                 analyser = null, stream = null, microphone = null;

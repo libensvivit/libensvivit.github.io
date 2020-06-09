@@ -76,5 +76,11 @@
         "image":"hericium_erinaceus.png",
         "credit":"Image credit: Maz Dave on Pinterest",
         "name":"Lion's mane"
+    },
+	"chrysaora_fuscescens":{
+        "scientific":"Chrysaora fuscescens",
+        "image":"chrysaora_fuscescens.jpg",
+        "credit":"Image credit: Alexander Semenov",
+        "name":"The Pacific sea nettle"
     }
 }

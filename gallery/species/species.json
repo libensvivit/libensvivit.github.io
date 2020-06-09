@@ -70,5 +70,11 @@
       "image":"maratus_hortorum.webp",
       "credit":"Image credit: Michael Doe",
       "name":"Peacock spider"
-   }
+   },
+    "hericium_erinaceus":{
+        "scientific":"Hericium erinaceus",
+        "image":"hericium_erinaceus.png",
+        "credit":"Image credit: Maz Dave on Pinterest",
+        "name":"Lion's mane"
+    }
 }

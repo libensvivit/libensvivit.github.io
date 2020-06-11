@@ -1,8 +1,12 @@
 {
-    "data":[
-        "https://en.wikipedia.org/wiki/Gorgon",
-        "https://en.wikipedia.org/wiki/Iconoclasm",
-        "https://en.wikipedia.org/wiki/Perseus",
-		"https://en.wikipedia.org/wiki/Polydectes"
-    ]
+    "data":{
+        "mythology": [
+            "https://en.wikipedia.org/wiki/Gorgon",
+            "https://en.wikipedia.org/wiki/Perseus",
+            "https://en.wikipedia.org/wiki/Polydectes"
+        ],
+        "other": [
+            "https://en.wikipedia.org/wiki/Iconoclasm"
+        ]
+    }
 }

@@ -8,5 +8,5 @@ $.getJSON("/random/random.json", d => {
 }).then(function(){
     var randomItem = randomList[0][Math.floor(Math.random()*randomList[0].length)];
     console.log("Random item is " + randomList);
-    window.location = randomItem;
+    window.location = "https://en.wikipedia.org/wiki/" + randomItem;
 });

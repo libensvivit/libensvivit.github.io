@@ -7,6 +7,6 @@ $.getJSON("/random/random.json", d => {
 }).then(function(){
     var randomItem = randomList[Math.floor(Math.random()*randomList.length)];
     console.log("Random item is " + randomItem);
-    //window.location = randomItem;
+    window.location = randomItem;
 });
 

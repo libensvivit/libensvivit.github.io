@@ -1,85 +1,85 @@
 {
    "ailurus_fulgens":{
       "scientific":"Ailurus fulgens",
-      "image":"ailurus_fulgens.webp",
+      "img":"ailurus_fulgens.webp",
       "credit":"Image credit: ARJUN THAPA, Institute of Zoology, Chinese Academy of Sciences.",
       "name":"Himalayan red panda"
    },
    "ailurus_styani":{
       "scientific":"Ailurus styani",
-      "image":"ailurus_styani.webp",
+      "img":"ailurus_styani.webp",
       "credit":"Image credit: YUNFANG XIU, Straits (Fuzhou) Giant Panda Research and Exchange Center, China.",
       "name":"Chinese red panda"
    },
    "ochotona_princeps":{
       "scientific":"Ochotona princeps",
-      "image":"ochotona_princeps.webp",
+      "img":"ochotona_princeps.webp",
       "credit":"Image credit: KEITH KOHL",
       "name":"American pika"
    },
    "ambystoma_mexicanum":{
       "scientific":"Ambystoma mexicanum",
-      "image":"ambystoma_mexicanum.webp",
+      "img":"ambystoma_mexicanum.webp",
       "credit":"Image credit: JAN-PETER KASPER/CORBIS",
       "name":"Mexican axolotl"
    },
    "felis_margarita_thinobia":{
       "scientific":"Felis margarita thinobia",
-      "image":"felis_margarita_thinobia.webp",
+      "img":"felis_margarita_thinobia.webp",
       "credit":"Image credit: PAYMAN SAZESH",
       "name":"Turkestan sand cat"
    },
    "vulpes_zerda":{
       "scientific":"Vulpes zerda",
-      "image":"vulpes_zerda.webp",
+      "img":"vulpes_zerda.webp",
       "credit":"Image credit: YVONNE N. in Willowick, USA",
       "name":"Fennec fox"
    },
    "atelerix_albiventris":{
       "scientific":"Atelerix albiventris",
-      "image":"atelerix_albiventris.webp",
+      "img":"atelerix_albiventris.webp",
       "credit":"Image credit: ANYKA in Belgium",
       "name":"Four-toed hedgehog"
    },
    "poecilotheria_metallica":{
       "scientific":"Poecilotheria metallica",
-      "image":"poecilotheria_metallica.webp",
+      "img":"poecilotheria_metallica.webp",
       "credit":"Image credit: MLursus on flickr",
       "name":"Gooty sapphire ornamental"
    },
    "pitohui_dichrous":{
       "scientific":"Pitohui dichrous",
-      "image":"pitohui_dichrous.webp",
+      "img":"pitohui_dichrous.webp",
       "credit":"Image credit: Markus Lilje on flickr",
       "name":"Hooded pitohui"
    },
    "thalassoma_purpureum":{
       "scientific":"Thalassoma purpureum",
-      "image":"thalassoma_purpureum.webp",
+      "img":"thalassoma_purpureum.webp",
       "credit":"Image credit: Inger Vandyke",
       "name":"Surge wrasse"
    },
    "phycodurus_eques":{
       "scientific":"Phycodurus eques",
-      "image":"phycodurus_eques.webp",
+      "img":"phycodurus_eques.webp",
       "credit":"Image credit: James Rosindell",
       "name":"Leafy seadragon"
    },
    "maratus_hortorum":{
       "scientific":"Maratus hortorum",
-      "image":"maratus_hortorum.webp",
+      "img":"maratus_hortorum.webp",
       "credit":"Image credit: Michael Doe",
       "name":"Peacock spider"
    },
     "hericium_erinaceus":{
         "scientific":"Hericium erinaceus",
-        "image":"hericium_erinaceus.png",
+        "img":"hericium_erinaceus.png",
         "credit":"Image credit: Maz Dave on Pinterest",
         "name":"Lion's mane"
     },
 	"chrysaora_fuscescens":{
         "scientific":"Chrysaora fuscescens",
-        "image":"chrysaora_fuscescens.jpg",
+        "img":"chrysaora_fuscescens.jpg",
         "credit":"Image credit: Alexander Semenov",
         "name":"The Pacific sea nettle"
     }

@@ -236,26 +236,26 @@ var Objects = {
     },
     
     Species_μGallery: {
-        name: "Species μGallery", href: null, 
-        Load: function(){
-            Objects.Home.Unload();
-            currentLoader = this.innerHTML;
-            $("#holder").append("<div class='wrapper'>");
+        name: "Species μGallery", href: "/gallery/species/", 
+        // Load: function(){
+        //     Objects.Home.Unload();
+        //     currentLoader = this.innerHTML;
+        //     $("#holder").append("<div class='wrapper'>");
 
-            $.ajax({
-                url: '/gallery/species/species.js',
-                type: 'GET',
-                async: true
-            }).done(function(data){
-                Sidebar.Collapse();
-                let link = '<link rel="stylesheet" type="text/css" href="/gallery/species/species.css">';
-                $("head").append(link)
-            });
-        },
-        Unload: function(){
-            $(".wrapper").remove();
-            $("link[href$='/gallery/species/species.css']").remove();
-        }
+        //     $.ajax({
+        //         url: '/gallery/species/species.js',
+        //         type: 'GET',
+        //         async: true
+        //     }).done(function(data){
+        //         Sidebar.Collapse();
+        //         let link = '<link rel="stylesheet" type="text/css" href="/gallery/species/species.css">';
+        //         $("head").append(link)
+        //     });
+        // },
+        // Unload: function(){
+        //     $(".wrapper").remove();
+        //     $("link[href$='/gallery/species/species.css']").remove();
+        // }
     },
     
     Epicycles: {

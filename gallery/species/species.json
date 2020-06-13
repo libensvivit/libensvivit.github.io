@@ -82,5 +82,11 @@
         "img":"chrysaora_fuscescens.jpg",
         "credit":"Image credit: Alexander Semenov",
         "name":"The Pacific sea nettle"
+    },
+	"crocus_sativus":{
+        "scientific":"Crocus sativus",
+        "img":"crocus_sativus.jpg",
+        "credit":"Image credit: @Wikimedia Serpico",
+        "name":"Saffron crocus"
     }
 }

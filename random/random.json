@@ -1,6 +1,8 @@
 {
     "data":{
-        "mythology": ["Gorgon","Perseus","Polydectes","Adonis"],
-        "other": ["Iconoclasm","Wanderlust"]
+        "mythology": ["Gorgon","Perseus","Polydectes","Adonis","Danaïdes"],
+        "other": ["Iconoclasm","Wanderlust","Phenomenology (physics)","Scientific method"],
+		"literature":["Allegory","Tragedy","Rhetoric"],
+		"biology":["Morphology","Phylogenetic tree"]
     }
 }

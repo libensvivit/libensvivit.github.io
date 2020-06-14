@@ -1,16 +1,17 @@
 var speciesList = [];
 
 function setHTML(item){
-    let href = "https://en.m.wikipedia.org/wiki/" + item.scientific;
+    let href = "https://en.m.wikipedia.org/wiki/" + item.description;
     return $(`<div title='${item.credit}'>`).click(function(){
         window.open(href, height=200, width=100);
-    }).append($("<div id='fotorama-caption'>").text(item.scientific));
+    }).append($("<div id='fotorama-caption'>").text(item.description));
 }
 
 
 $.getJSON("/art/art.json", d => {
     $.each(d, function(key, item){
-        item.img = '/art/images/' + item.img;
+        console.log(item);
+        //item.img = '/art/images/' + item.img;
         item.html = setHTML(item);
         speciesList.push(item);
     });
@@ -35,6 +36,5 @@ $.getJSON("/art/art.json", d => {
             shuffle: true, loop: true, transition: 'dissolve',
             data : speciesList,
         });
-    
     });
 });

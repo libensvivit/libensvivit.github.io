@@ -88,5 +88,11 @@
         "img":"crocus_sativus.jpg",
         "credit":"Image credit: @Wikimedia Serpico",
         "name":"Saffron crocus"
-    }
+    },
+    "elysia_chlorotica":{
+      "scientific":"Elysia chlorotica",
+      "img":"elysia_chlorotica.jpg",
+      "credit":"Image credit: Patrick J. Krug",
+      "name":"Eastern emerald elysia"
+  }
 }

@@ -1,0 +1,98 @@
+{
+   "ailurus_fulgens":{
+      "scientific":"Ailurus fulgens",
+      "img":"ailurus_fulgens.webp",
+      "credit":"Image credit: ARJUN THAPA, Institute of Zoology, Chinese Academy of Sciences.",
+      "name":"Himalayan red panda"
+   },
+   "ailurus_styani":{
+      "scientific":"Ailurus styani",
+      "img":"ailurus_styani.webp",
+      "credit":"Image credit: YUNFANG XIU, Straits (Fuzhou) Giant Panda Research and Exchange Center, China.",
+      "name":"Chinese red panda"
+   },
+   "ochotona_princeps":{
+      "scientific":"Ochotona princeps",
+      "img":"ochotona_princeps.webp",
+      "credit":"Image credit: KEITH KOHL",
+      "name":"American pika"
+   },
+   "ambystoma_mexicanum":{
+      "scientific":"Ambystoma mexicanum",
+      "img":"ambystoma_mexicanum.webp",
+      "credit":"Image credit: JAN-PETER KASPER/CORBIS",
+      "name":"Mexican axolotl"
+   },
+   "felis_margarita_thinobia":{
+      "scientific":"Felis margarita thinobia",
+      "img":"felis_margarita_thinobia.webp",
+      "credit":"Image credit: PAYMAN SAZESH",
+      "name":"Turkestan sand cat"
+   },
+   "vulpes_zerda":{
+      "scientific":"Vulpes zerda",
+      "img":"vulpes_zerda.webp",
+      "credit":"Image credit: YVONNE N. in Willowick, USA",
+      "name":"Fennec fox"
+   },
+   "atelerix_albiventris":{
+      "scientific":"Atelerix albiventris",
+      "img":"atelerix_albiventris.webp",
+      "credit":"Image credit: ANYKA in Belgium",
+      "name":"Four-toed hedgehog"
+   },
+   "poecilotheria_metallica":{
+      "scientific":"Poecilotheria metallica",
+      "img":"poecilotheria_metallica.webp",
+      "credit":"Image credit: MLursus on flickr",
+      "name":"Gooty sapphire ornamental"
+   },
+   "pitohui_dichrous":{
+      "scientific":"Pitohui dichrous",
+      "img":"pitohui_dichrous.webp",
+      "credit":"Image credit: Markus Lilje on flickr",
+      "name":"Hooded pitohui"
+   },
+   "thalassoma_purpureum":{
+      "scientific":"Thalassoma purpureum",
+      "img":"thalassoma_purpureum.webp",
+      "credit":"Image credit: Inger Vandyke",
+      "name":"Surge wrasse"
+   },
+   "phycodurus_eques":{
+      "scientific":"Phycodurus eques",
+      "img":"phycodurus_eques.webp",
+      "credit":"Image credit: James Rosindell",
+      "name":"Leafy seadragon"
+   },
+   "maratus_hortorum":{
+      "scientific":"Maratus hortorum",
+      "img":"maratus_hortorum.webp",
+      "credit":"Image credit: Michael Doe",
+      "name":"Peacock spider"
+   },
+    "hericium_erinaceus":{
+        "scientific":"Hericium erinaceus",
+        "img":"hericium_erinaceus.png",
+        "credit":"Image credit: Maz Dave on Pinterest",
+        "name":"Lion's mane"
+    },
+	"chrysaora_fuscescens":{
+        "scientific":"Chrysaora fuscescens",
+        "img":"chrysaora_fuscescens.jpg",
+        "credit":"Image credit: Alexander Semenov",
+        "name":"The Pacific sea nettle"
+    },
+	"crocus_sativus":{
+        "scientific":"Crocus sativus",
+        "img":"crocus_sativus.jpg",
+        "credit":"Image credit: @Wikimedia Serpico",
+        "name":"Saffron crocus"
+    },
+    "elysia_chlorotica":{
+      "scientific":"Elysia chlorotica",
+      "img":"elysia_chlorotica.jpg",
+      "credit":"Image credit: Patrick J. Krug",
+      "name":"Eastern emerald elysia"
+   }
+}

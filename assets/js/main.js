@@ -236,7 +236,7 @@ var Objects = {
     },
     
     Species_μGallery: {
-        name: "Species μGallery", href: "/gallery/species/", 
+        name: "Species μGallery", href: "/species/", 
         // Load: function(){
         //     Objects.Home.Unload();
         //     currentLoader = this.innerHTML;

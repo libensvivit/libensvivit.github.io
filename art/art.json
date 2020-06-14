@@ -1,19 +1,25 @@
 {
    "classicism":[
       {
-         "description":""
+         "title":""
       }
    ],
    "renaissance":[
       {
-         "description":"David by Michelangelo",
+         "title":"David by Michelangelo",
          "credit":"Credits for Jörg Bittner Unna",
          "img":"https://upload.wikimedia.org/wikipedia/commons/a/a0/%27David%27_by_Michelangelo_Fir_JBU002.jpg"
       }
    ],
    "american_art":[
       {
-         "description":"Nighthawks by Edward Hopper",
+         "title":"Nighthawks by Edward Hopper",
+         "credit":"Credits for Edward Hopper",
+         "wiki":"https://en.wikipedia.org/wiki/Nighthawks_(painting)",
+         "img":"https://upload.wikimedia.org/wikipedia/commons/a/a8/Nighthawks_by_Edward_Hopper_1942.jpg"
+      },
+      {
+         "title":"Nighthawks by Edward Hopper",
          "credit":"Credits for Edward Hopper",
          "img":"https://upload.wikimedia.org/wikipedia/commons/a/a8/Nighthawks_by_Edward_Hopper_1942.jpg"
       }

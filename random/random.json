@@ -5,6 +5,7 @@
 				  "Florence Nightingale effect","Stockholm syndrome","Four humors"],
 		"literature":["Allegory","Tragedy","Rhetoric"],
 		"biology":["Morphology","Phylogenetic tree"],
-		"taken_notes":[]
+        "taken_notes":[],
+        "art":["https://www.moma.org/collection/works/79933"]
     }
 }

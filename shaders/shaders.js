@@ -39,19 +39,13 @@ var unloadDefault = function(){
 
 var slides = [
     {
-        title: "Majestic Eye",
-        name: "majestic_eye",
-        load: loadDefault
+        title: "Majestic Eye", name: "majestic_eye"
     },
     {
-        title: "Rainbow Circle",
-        name: "rainbow_circle",
-        load: loadDefault // (this.name)
+        title: "Rainbow Circle", name: "rainbow_circle"
     },
     {
-        title: "Caterpillar 8",
-        name: "caterpillar",
-        load: loadDefault
+        title: "Caterpillar 8", name: "caterpillar"
     }
 ]
 console.log(slides);
@@ -62,6 +56,7 @@ function nextSlide(n) {
     let indexNow = Math.abs(slideIndex % slides.length);
     let name = slides[indexNow].name;
     loadDefault(name);
+    $("#info").html(slides[indexNow].title);
 }
 
 

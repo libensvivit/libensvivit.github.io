@@ -25,9 +25,8 @@ loadDefault = function(name){
                 async: false
             }).done(function(data){
                 console.log("Succesfully loaded " + name);
-                console.log(document.getElementById("container"));
-            })
-        })
+            });
+        });
     });
 }
 
@@ -48,7 +47,7 @@ var slides = [
     {
         title: "Rainbow Circle",
         name: "rainbow_circle",
-        load: loadDefault
+        load: loadDefault // (this.name)
     },
     // {
     //     title: "Caterpillar 8",
@@ -72,9 +71,9 @@ function nextSlide(n) {
 
     //$(".slides").append("<div id='container'>");
 
-    //$("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='left_arrow' onclick='nextSlide(-1)'>"));
-    //$("#navbox").append($("<div id='info'>").text(slides[slideIndex].title));
-    //$("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='right_arrow' onclick='nextSlide(1)'>"));
+    $("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='left_arrow' onclick='nextSlide(-1)'>"));
+    $("#navbox").append($("<div id='info'>").text(slides[slideIndex].title));
+    $("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='right_arrow' onclick='nextSlide(1)'>"));
 
     slides[slideIndex].load(slides[slideIndex].name);
 }

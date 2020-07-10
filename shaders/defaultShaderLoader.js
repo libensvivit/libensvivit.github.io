@@ -7,6 +7,8 @@ lat = 0, lon = 0, phy = 0, theta = 0;
 var startTime = Date.now();
 
 renderer = new THREE.WebGLRenderer();
+renderer.setPixelRatio(window.devicePixelRatio ? window.devicePixelRatio : 1);
+
 document.getElementById("container").appendChild(renderer.domElement);
 
 camera = new THREE.Camera();

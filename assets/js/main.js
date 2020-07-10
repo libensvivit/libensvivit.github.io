@@ -300,14 +300,15 @@ var Objects = {
             currentLoader = this.innerHTML;;
     
             $("#holder").append("<div class='slides'>");
-            $(".slides").append("<div id='navbox'>");
+            $(".slides").append("<div id='container'>").append("<div id='navbox'>");
+
             $.ajax({
-                url: '/gallery/shaders/shaders.js',
+                url: '/shaders/shaders.js', // gallery/shaders/shaders
                 type: 'GET',
                 async: true
             }).done(function(data){
                 Sidebar.Collapse();
-                let link = '<link rel="stylesheet" type="text/css" href="/gallery/shaders/shaders.css">';
+                let link = '<link rel="stylesheet" type="text/css" href="/shaders/shaders.css">';
                 $("head").append(link);
             });
         },

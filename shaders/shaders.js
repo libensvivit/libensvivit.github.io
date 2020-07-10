@@ -6,6 +6,7 @@ loadDefault = function(name){
     let href = '/shaders/defaultShaderLoader.js';
     let VERTEX_SOURCE = '/shaders/' + name + '/vert.s';
     let FRAGMENT_SOURCE = '/shaders/' + name + '/frag.s';
+
     $.ajax({
         url: VERTEX_SOURCE,
         type: 'GET',
@@ -33,7 +34,6 @@ var unloadDefault = function(){
     $("#container").text("");
     vertShader = null;
     fragShader = null;
-    //$("script[type$='module']").remove();
 }
 
 
@@ -54,6 +54,7 @@ var slides = [
         load: loadDefault
     }
 ]
+console.log(slides);
 
 function nextSlide(n) {
     unloadDefault();

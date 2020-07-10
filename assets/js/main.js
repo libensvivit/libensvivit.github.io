@@ -303,18 +303,17 @@ var Objects = {
             $(".slides").append("<div id='container'>").append("<div id='navbox'>");
 
             $.ajax({
-                url: '/shaders/shaders.js', // gallery/shaders/shaders
+                url: '/shaders/shaders.js',
                 type: 'GET',
                 async: true
             }).done(function(data){
                 Sidebar.Collapse();
-                let link = '<link rel="stylesheet" type="text/css" href="/shaders/shaders.css">';
-                $("head").append(link);
+                $("head").append('<link rel="stylesheet" type="text/css" href="/shaders/shaders.css">');
             });
         },
         Unload: function(){
             $("#holder").text("");
-            $("link[href$='/gallery/shaders/shaders.css']").remove();
+            $("link[href$='/shaders/shaders.css']").remove();
             $("script[type='module']").remove();
         }
     },

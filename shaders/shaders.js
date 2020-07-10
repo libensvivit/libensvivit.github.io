@@ -62,9 +62,9 @@ function nextSlide(n) {
 
 // FIRST PAGE LOAD //
 {
-    $("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='left_arrow' onclick='nextSlide(-1)'>"));
+    $("#navbox").append($("<img src='/shaders/arrow.png' id='left_arrow' onclick='nextSlide(-1)'>"));
     $("#navbox").append($("<div id='info'>").text(slides[slideIndex].title));
-    $("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='right_arrow' onclick='nextSlide(1)'>"));
+    $("#navbox").append($("<img src='/shaders/arrow.png' id='right_arrow' onclick='nextSlide(1)'>"));
 
     loadDefault(slides[slideIndex].name);
 }

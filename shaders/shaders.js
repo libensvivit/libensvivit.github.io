@@ -44,9 +44,9 @@ var slides = [
     {
         title: "Rainbow Circle", name: "rainbow_circle"
     },
-    {
-        title: "Caterpillar 8", name: "caterpillar"
-    }
+    // {
+    //     title: "Caterpillar 8", name: "caterpillar"
+    // }
 ]
 console.log(slides);
 

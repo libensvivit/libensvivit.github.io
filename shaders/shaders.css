@@ -29,6 +29,10 @@ canvas{
   height: auto;
 }
 
+#navbox img{
+  opacity: 0.8;
+}
+
 #info{
   display: flex;
   justify-content: center;

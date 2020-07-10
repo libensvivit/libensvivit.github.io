@@ -3,7 +3,6 @@ var loadDefault, vertShader, fragShader;
 // LOADERS
 
 loadDefault = function(name){
-    //let href = '/gallery/' + name + '/' + name + '.js';
     let href = '/shaders/defaultShaderLoader.js';
     let VERTEX_SOURCE = '/shaders/' + name + '/vert.s';
     let FRAGMENT_SOURCE = '/shaders/' + name + '/frag.s';
@@ -49,11 +48,11 @@ var slides = [
         name: "rainbow_circle",
         load: loadDefault // (this.name)
     },
-    // {
-    //     title: "Caterpillar 8",
-    //     name: "caterpillar",
-    //     load: loadDefault
-    // }
+    {
+        title: "Caterpillar 8",
+        name: "caterpillar",
+        load: loadDefault
+    }
 ]
 
 function nextSlide(n) {
@@ -61,19 +60,15 @@ function nextSlide(n) {
     slideIndex += n;
     let indexNow = Math.abs(slideIndex % slides.length);
     let name = slides[indexNow].name;
-    slides[indexNow].load(name);
-    //$("#info").text(slides[indexNow].title);
+    loadDefault(name);
 }
 
 
 // FIRST PAGE LOAD //
 {
-
-    //$(".slides").append("<div id='container'>");
-
     $("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='left_arrow' onclick='nextSlide(-1)'>"));
     $("#navbox").append($("<div id='info'>").text(slides[slideIndex].title));
     $("#navbox").append($("<img src='/gallery/shaders/arrow.png' id='right_arrow' onclick='nextSlide(1)'>"));
 
-    slides[slideIndex].load(slides[slideIndex].name);
+    loadDefault(slides[slideIndex].name);
 }

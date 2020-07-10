@@ -111,22 +111,11 @@ var height = document.body.clientHeight;
 {
     var Sidebar = {
         Collapse: function(){
-            $(".box:not(#home)").css({
-                marginLeft: "-330px",
-                background: "none",
-                transition: "margin 0.3s ease, color 1s ease"
-            });
-            $(".link").removeAttr("href");
             collapsed = true;
+            $(".box:not(#home)").attr("hidden", true);
         },
         Expand: function(){
-            $(".box:not(#home)").css({
-                marginLeft: isMobile ? "8px" : "10px",
-                background: "rgba(0, 0, 0, 0.5)",
-                transition: "margin 0.3s ease, color 0s ease"
-            });
-            //for(obj of Objects) if(obj.href) obj.elem.attr("href", obj.href);
-        
+            $(".box:not(#home)").attr("hidden", false);      
             collapsed = false;
         }
     }

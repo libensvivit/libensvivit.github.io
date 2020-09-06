@@ -135,11 +135,11 @@ def generate3Body(stopCond, numSteps):
             sep23 = ((x3[i]-x2[i])**2+(y3[i]-y2[i])**2)**(1/2)
 
             if(sep13 < min12 or sep13 < min13 or sep23 < min23 or sep12 > sepStop or sep13 > sepStop or sep23 > sepStop):
-                if(sep12 < min12 or sep13 < min13 or sep23 < min23):
+                #if(sep12 < min12 or sep13 < min13 or sep23 < min23):
                     #print("COLLISION OCCURED!")
                     #print(f"sep12 {sep12}, sep13 {sep13}, sep23 {sep23}")
                     #print(f"min12 {min12}, min13 {min13}, min23 {min23}")
-                    collision = True
+                    #collision = True
                 
                 stop = True
                 t = np.linspace(0, currentT, i)
@@ -157,7 +157,7 @@ def generate3Body(stopCond, numSteps):
 def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 15
+    minTime = 10
     #counter = document.getElementById("iter")
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):
@@ -170,7 +170,7 @@ def getInteresting3Body(stopCond, numSteps):
 
 
 def getReadyForPlot():
-    [plotData, t, m, rad, collision] = getInteresting3Body([50, 100], 1000)
+    [plotData, t, m, rad, collision] = getInteresting3Body([50, 120], 2000)
     #print(len(plotData[0]))
 
     X = np.asarray([plotData[0], plotData[2], plotData[4]])

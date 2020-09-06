@@ -28,3 +28,4 @@ onmessage = (e) => {
 }
 
 initialize();
+

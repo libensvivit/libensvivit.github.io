@@ -44,12 +44,21 @@ var stopped = false;
 var initialized_PIXI = false;
 var working = true;
 var worker1 = new Worker('webworker.js');
+var totalIterations = 0;
+var totalPlotSeconds = 0;
+var totalPlots = 0;
+var successedIterations = 0;
+var startTime = 0;
+var startTimePlot = 0;
 var i = 0;
+
+startTime = performance.now();
 
 worker1.onmessage = (e) => {
     if(typeof e.data.whatType != 'undefined' && e.data.whatType == "generatedData"){
             try{
                 readyForPlot.push(e.data.data);
+                successedIterations += 1;
             }
             catch(e){}
             ready = true;
@@ -64,11 +73,11 @@ worker1.onmessage = (e) => {
 
         PIXI.loader.load(setup);
         initialized_PIXI = true;
+        startTimePlot = performance.now();
     }
 }
 
 function setup(){
-
     obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
     obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
     obj3 = new Circle({x:X[2][0], y:Y[2][1], rad:rad[2], color:0xBBEE16});
@@ -78,8 +87,8 @@ function setup(){
 
 
 function gameLoop(delta){
-    $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/5`);
-    if(readyForPlot.length == 5){
+    $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/10`);
+    if(readyForPlot.length == 20){
         $("#work").text("Working status: Inactive")
     } else {
         $("#work").text("Working status: Active")
@@ -102,23 +111,31 @@ function gameLoop(delta){
             Y = readyForPlot[0][1];
             rad = readyForPlot[0][2];
             
+            totalIterations += X[0].length;
+            passedSeconds = (performance.now() - startTime)/1000;
+            $("#success").text(`Iteration/Success: ${totalIterations/successedIterations}`);
+            $("#secondPerSuccess").text(`Second/Success: ${passedSeconds/successedIterations}`);            
+            $("#secondPerPlot").text(`Second/Plot: ${totalPlotSeconds/totalPlots}`);
+
             obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
             obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
             obj3 = new Circle({x:X[2][0], y:Y[2][1], rad:rad[2], color:0xBBEE16});
             readyForPlot.shift();
-            stopped = false
+            stopped = false;
+            startTimePlot = performance.now();
         }
     }
 
-    if(!working && readyForPlot.length < 5){
+    if(!working && readyForPlot.length < 10){
         working = true;
         worker1.postMessage("generateData");
     }
 
     if(i > X[0].length && stopped == false){
-        //console.log("Simulation ended.");
         i = 0;
         stopped = true;
+        totalPlots += 1;
+        totalPlotSeconds += (performance.now() - startTimePlot)/1000;
     }
 }
 

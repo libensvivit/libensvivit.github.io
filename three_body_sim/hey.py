@@ -1,4 +1,5 @@
 import numpy as np
+from js import document
 
 def remap(x, in_min, in_max, out_min, out_max):
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
@@ -156,9 +157,11 @@ def generate3Body(stopCond, numSteps):
 def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 20
+    minTime = 10
+    counter = document.getElementById("iter")
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 500):
+        counter.innerHTML = f"Iteration counter: {i}"
         [plotData, t, m, rad, collision] = generate3Body(stopCond, numSteps)
         if(t[-1]/yearSec > minTime and len(t) != numSteps+1): interesting = True
         if(interesting):

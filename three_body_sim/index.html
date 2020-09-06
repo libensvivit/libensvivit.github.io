@@ -12,6 +12,7 @@
 </head>
 <body>
     <script src="main.js"></script>
+    <div id="iter">Iteration counter: 0</div>
     <div id="log"></div>
     <script>
         console.log = divConsole("log");
@@ -21,7 +22,6 @@
                     .then(response => response.text())
                     .then(pythonCode => {
                         pyodide.runPython(pythonCode);
-                    }).then(() => {
                         PIXI.loader.load(setup);
                     });
             });

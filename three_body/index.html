@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Body Sim</title>
+    <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js" integrity="sha512-J7UHpLx39bpqtP+aWP6yIuXroFk0XPkDQaS9zDthM4TVeaXstWYh556gxsXwwIwpAPSoKqVHW+eqz3B93SpyKg==" crossorigin="anonymous"></script>
+</head>
+<body>
+</body>
+<script src="main.js"></script>
+<script>
+    languagePluginLoader.then(() => {
+        pyodide.loadPackage(['numpy']).then(() => {
+            fetch("hey.py")
+                .then(response => response.text())
+                .then(pythonCode => {
+                    pyodide.runPython(pythonCode);
+                    PIXI.loader.load(setup);
+                });
+        });
+    });
+
+    function doThisTest(){
+        var t0 = performance.now();
+        pyodide.runPython(`generate3Body()`);
+        var t1 = performance.now();
+        console.log("Execution took " + (t1 - t0)/1000 + " seconds.")
+    }
+
+</script>
+</html>

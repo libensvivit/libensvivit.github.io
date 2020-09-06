@@ -339,6 +339,10 @@ var Objects = {
             $("#holder").text("");
             $("link[href$='/tree_of_life/style.css']").remove();
         }
+    },
+
+    Three_Body: {
+        name: "Three Body Simulation", href: "/three_body_sim/"
     }
 }
 

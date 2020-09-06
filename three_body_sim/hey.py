@@ -135,9 +135,9 @@ def generate3Body(stopCond, numSteps):
 
             if(sep13 < min12 or sep13 < min13 or sep23 < min23 or sep12 > sepStop or sep13 > sepStop or sep23 > sepStop):
                 if(sep12 < min12 or sep13 < min13 or sep23 < min23):
-                    print("COLLISION OCCURED!")
-                    print(f"sep12 {sep12}, sep13 {sep13}, sep23 {sep23}")
-                    print(f"min12 {min12}, min13 {min13}, min23 {min23}")
+                    #print("COLLISION OCCURED!")
+                    #print(f"sep12 {sep12}, sep13 {sep13}, sep23 {sep23}")
+                    #print(f"min12 {min12}, min13 {min13}, min23 {min23}")
                     collision = True
                 
                 stop = True

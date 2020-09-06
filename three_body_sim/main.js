@@ -68,5 +68,6 @@ function gameLoop(delta){
     i+=1;
 }
 
+document.body.prepend(app.view);
 
-document.body.appendChild(app.view);
+//document.body.appendChild(app.view);

@@ -34,7 +34,7 @@ class Circle{
     }
 }
 
-var obj1, X, Y;
+var obj1, obj2, obj3, X, Y;
 var plottingAlready = false;
 var readyForPlot = [];
 
@@ -46,26 +46,39 @@ function setup(){
     obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
     obj3 = new Circle({x:X[2][0], y:Y[2][1], rad:rad[2], color:0xBBEE16});
 
-    plottingAlready = true
     app.ticker.add(delta => gameLoop(delta))
 }
 
 i = 0;
-var warning = false;
+var stopped = false;
 
 function gameLoop(delta){
-    if(i > X[0].length && warning == false){
-        warning = true;
-        console.log("Simulation ended.");
+    //console sync error?
+    if(!stopped){
+        obj1.x = X[0][i];
+        obj1.y = Y[0][i];
+        obj2.x = X[1][i];
+        obj2.y = Y[1][i];
+        obj3.x = X[2][i];
+        obj3.y = Y[2][i];
+        i+=1;
     }
 
-    obj1.x = X[0][i];
-    obj1.y = Y[0][i];
-    obj2.x = X[1][i];
-    obj2.y = Y[1][i];
-    obj3.x = X[2][i];
-    obj3.y = Y[2][i];
-    i+=1;
+    if(stopped){
+        [X, Y, rad] = pyodide.globals.getReadyForPlot();
+    
+        obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
+        obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
+        obj3 = new Circle({x:X[2][0], y:Y[2][1], rad:rad[2], color:0xBBEE16});
+
+        stopped = false
+    }
+
+    if(i > X[0].length && stopped == false){
+        //console.log("Simulation ended.");
+        i = 0;
+        stopped = true;
+    }
 }
 
 document.body.prepend(app.view);

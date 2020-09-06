@@ -156,7 +156,7 @@ def generate3Body(stopCond, numSteps):
 def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 10
+    minTime = 20
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 500):
         [plotData, t, m, rad, collision] = generate3Body(stopCond, numSteps)
@@ -167,7 +167,7 @@ def getInteresting3Body(stopCond, numSteps):
 
 
 def getReadyForPlot():
-    [plotData, t, m, rad, collision] = getInteresting3Body([60, 150], 2000)
+    [plotData, t, m, rad, collision] = getInteresting3Body([60, 70], 2000)
     #print(len(plotData[0]))
 
     X = np.asarray([plotData[0], plotData[2], plotData[4]])

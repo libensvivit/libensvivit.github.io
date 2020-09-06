@@ -7,6 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js" integrity="sha512-J7UHpLx39bpqtP+aWP6yIuXroFk0XPkDQaS9zDthM4TVeaXstWYh556gxsXwwIwpAPSoKqVHW+eqz3B93SpyKg==" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <script src="main.js"></script>
@@ -19,11 +21,12 @@
                     .then(response => response.text())
                     .then(pythonCode => {
                         pyodide.runPython(pythonCode);
+                    }).then(() => {
                         PIXI.loader.load(setup);
                     });
             });
         });
-        
+
         function doThis(){
             var t0 = performance.now();
             pyodide.runPython(`generate3Body()`);

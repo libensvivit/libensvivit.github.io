@@ -156,20 +156,19 @@ def generate3Body(stopCond, numSteps):
 def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 20
-
+    minTime = 10
+    print("Searching for interesting three body. Please be patient...")
     for i in range(1, 500):
         [plotData, t, m, rad, collision] = generate3Body(stopCond, numSteps)
-        if(t[-1]/yearSec > minTime and len(t) != numSteps+1):
-            print(f"Found interesting 3body after {i} iterations!")
+        if(t[-1]/yearSec > minTime and len(t) != numSteps+1): interesting = True
+        if(interesting):
+            print(f"Found interesting configuration after {i} iterations!")
             return [plotData, t, m, rad, collision]
-        else:
-            print(f"{i} - Failed! Trying again..")
 
 
 def getReadyForPlot():
-    [plotData, t, m, rad, collision] = getInteresting3Body([60, 100], 2000)
-    print(len(plotData[0]))
+    [plotData, t, m, rad, collision] = getInteresting3Body([60, 150], 2000)
+    #print(len(plotData[0]))
 
     X = np.asarray([plotData[0], plotData[2], plotData[4]])
     Y = np.asarray([plotData[1], plotData[3], plotData[5]])
@@ -184,5 +183,5 @@ def getReadyForPlot():
 
     #rad = remap(rad/7e8, 6.3, 29.9, 5, 15)
     rad /= 7e8
-    print("You should see something.")
+    print("Now you should see something.")
     return [X, Y, rad]

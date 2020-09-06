@@ -1,3 +1,14 @@
+function divConsole(div){
+    var logger = document.getElementById(div);
+    return function(msg){
+        if(typeof msg == 'object'){
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(msg) : msg) + '<br />';
+        } else{
+            logger.innerHTML += msg + '<br />'; 
+        }
+    }
+}
+
 let app = new PIXI.Application({
     width: 512,
     height: 512,
@@ -40,10 +51,12 @@ function setup(){
 }
 
 i = 0;
+var warning = false;
 
 function gameLoop(delta){
-    if(i < X[0].length){
-        //console.log(i);
+    if(i > X[0].length && warning == false){
+        warning = true;
+        console.log("Simulation ended.");
     }
 
     obj1.x = X[0][i];

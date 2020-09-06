@@ -1,3 +1,7 @@
+###################################################################
+#### Implemented from https://github.com/kirklong/ThreeBodyBot ####
+###################################################################
+
 import numpy as np
 #from js import document
 
@@ -85,8 +89,8 @@ def getLimits(X, Y, padding):
     return xlims, ylims
 
 def generate3Body(stopCond, numSteps):
-    tStop = stopCond[0]*365*24*3600
-    sepStop = stopCond[1]*1.5e11
+    tStop = stopCond[0]
+    sepStop = stopCond[1]
     stop = False
     currentT = 0
     t = np.linspace(0, tStop, numSteps+1)
@@ -157,14 +161,14 @@ def generate3Body(stopCond, numSteps):
 def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 10
-    maxTime = stopCond[0]
-    sepStop = stopCond[1]
-    #counter = document.getElementById("iter")
+    minTime = 15 # in years
+    maxTime = 30 # in years
+    maxSep = stopCond[1]
+
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):
         #counter.innerHTML = f" --> {i}"
-        [plotData, t, m, rad, collision] = generate3Body([maxTime, sepStop], numSteps)
+        [plotData, t, m, rad, collision] = generate3Body([maxTime*yearSec, maxSep*1.5e11], numSteps)
         if(t[-1]/yearSec > minTime and len(t) != numSteps+1): interesting = True
         if(interesting):
             print(f"Found interesting configuration after {i} iterations!")

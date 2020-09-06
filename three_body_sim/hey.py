@@ -158,11 +158,13 @@ def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
     minTime = 10
+    maxTime = stopCond[0]
+    sepStop = stopCond[11]
     #counter = document.getElementById("iter")
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):
         #counter.innerHTML = f" --> {i}"
-        [plotData, t, m, rad, collision] = generate3Body(stopCond, numSteps)
+        [plotData, t, m, rad, collision] = generate3Body([maxTime, sepStop], numSteps)
         if(t[-1]/yearSec > minTime and len(t) != numSteps+1): interesting = True
         if(interesting):
             print(f"Found interesting configuration after {i} iterations!")
@@ -187,4 +189,4 @@ def getReadyForPlot():
     #rad = remap(rad/7e8, 6.3, 29.9, 5, 15)
     rad /= 7e8
     #print("Now you should see something.")
-    return [X, Y, rad]
+    return [X, Y, rad, t]

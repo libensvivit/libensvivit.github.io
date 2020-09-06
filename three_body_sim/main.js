@@ -51,6 +51,7 @@ var successedIterations = 0;
 var startTime = 0;
 var startTimePlot = 0;
 var i = 0;
+var yearSec = 365*24*3600;
 
 startTime = performance.now();
 
@@ -69,6 +70,7 @@ worker1.onmessage = (e) => {
         X = readyForPlot[0][0];
         Y = readyForPlot[0][1];
         rad = readyForPlot[0][2];
+        t = readyForPlot[0][3]
         readyForPlot.shift();
 
         PIXI.loader.load(setup);
@@ -102,6 +104,7 @@ function gameLoop(delta){
         obj2.y = Y[1][i];
         obj3.x = X[2][i];
         obj3.y = Y[2][i];
+        $("#yearsPassed").text(`Years Passed: ${(t[i]/yearSec).toFixed(2)}`);
         i+=1;
     }
 
@@ -110,6 +113,7 @@ function gameLoop(delta){
             X = readyForPlot[0][0];
             Y = readyForPlot[0][1];
             rad = readyForPlot[0][2];
+            t = readyForPlot[0][3]
             
             totalIterations += X[0].length;
             passedSeconds = (performance.now() - startTime)/1000;

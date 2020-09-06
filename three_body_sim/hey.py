@@ -159,7 +159,7 @@ def getInteresting3Body(stopCond, numSteps):
     interesting = False
     minTime = 10
     maxTime = stopCond[0]
-    sepStop = stopCond[11]
+    sepStop = stopCond[1]
     #counter = document.getElementById("iter")
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):

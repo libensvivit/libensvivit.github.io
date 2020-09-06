@@ -157,7 +157,7 @@ def generate3Body(stopCond, numSteps):
 def getInteresting3Body(stopCond, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 8
+    minTime = 15
     #counter = document.getElementById("iter")
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):

@@ -1,14 +1,3 @@
-function divConsole(div){
-    var logger = document.getElementById(div);
-    return function(msg){
-        if(typeof msg == 'object'){
-            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(msg) : msg) + '<br />';
-        } else{
-            logger.innerHTML += msg + '<br />'; 
-        }
-    }
-}
-
 let app = new PIXI.Application({
     width: 512,
     height: 512,

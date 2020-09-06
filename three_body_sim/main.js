@@ -37,10 +37,11 @@ class Circle{
 var obj1, obj2, obj3, X, Y;
 var plottingAlready = false;
 var readyForPlot = [];
-
+var getReadyForPlot;
 
 function setup(){
-    [X, Y, rad] = pyodide.globals.getReadyForPlot();
+    getReadyForPlot = pyodide.globals.getReadyForPlot;
+    [X, Y, rad] = getReadyForPlot();
     
     obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
     obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
@@ -65,7 +66,7 @@ function gameLoop(delta){
     }
 
     if(stopped){
-        [X, Y, rad] = pyodide.globals.getReadyForPlot();
+        [X, Y, rad] = getReadyForPlot();
     
         obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
         obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});

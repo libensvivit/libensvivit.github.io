@@ -25,7 +25,7 @@ def getInitConditions():
         while not accept2:
             pos2 = rand(-10, 10, 2)
             dist12 = ((pos1[0]-pos2[0])**2+(pos1[1]-pos2[1])**2)**(1/2)
-            if (dist12*1.5e11) > (rad[0] + rad[1]): #they aren't touching
+            if (dist12*1.5e11) > (rad[0] + rad[1]):
                 accept2 = True
         return pos2
 
@@ -37,7 +37,7 @@ def getInitConditions():
             pos3 = rand(-10, 10, 2)
             dist13 = ((pos1[0]-pos3[0])**2+(pos1[1]-pos3[1])**2)**(1/2)
             dist23 = ((pos2[0]-pos3[0])**2+(pos2[1]-pos3[1])**2)**(1/2)
-            if (dist13*1.5e11) > (rad[0]+rad[2]) and (dist23*1.5e11) > (rad[1]+rad[2]): #3rd isn't touching either
+            if (dist13*1.5e11) > (rad[0]+rad[2]) and (dist23*1.5e11) > (rad[1]+rad[2]):
                 accept3 = True
         return pos3
 
@@ -126,6 +126,7 @@ def generate3Body(stopCond, numSteps):
             k4 = stepSize*dR(r + k3,   m)
             r += (k1 + 2*k2 + 2*k3 + k4)/6
 
+            # PROBLEM : sep12 < min12 doesn't work as expected, they pass through each other
             # Tried calculating everything in canvas size but got an error and it is very slow
             #x1[i], y1[i], x2[i], y2[i], x3[i], y3[i] = remap(r[0:6], -1.5e12, 1.5e12, 0, 512)
             #rad = remap(rad/7e8, 6.3, 29.9, 10, 30)

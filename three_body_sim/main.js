@@ -1,9 +1,22 @@
+function divConsole(div){
+    var logger = document.getElementById(div);
+    return function(msg){
+        if(typeof msg == 'object'){
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(msg) : msg) + '<br />';
+        } else{
+            logger.innerHTML += msg + '<br />'; 
+        }
+    }
+}
+
 let app = new PIXI.Application({
     width: 512,
     height: 512,
     antialias: true,
     backgroundColor: 0xdddddd
 });
+
+console.log = divConsole("log");
 
 class Circle{
     constructor(param){
@@ -65,7 +78,13 @@ function setup(){
 
 
 function gameLoop(delta){
-    $("#iter").text(`Ready for plotting: ${readyForPlot.length}`);
+    $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/5`);
+    if(readyForPlot.length == 5){
+        $("#work").text("Working status: Inactive")
+    } else {
+        $("#work").text("Working status: Active")
+    }
+    
 
     if(!stopped){
         obj1.x = X[0][i];
@@ -97,7 +116,7 @@ function gameLoop(delta){
     }
 
     if(i > X[0].length && stopped == false){
-        console.log("Simulation ended.");
+        //console.log("Simulation ended.");
         i = 0;
         stopped = true;
     }

@@ -104,7 +104,9 @@ function gameLoop(delta){
         obj2.y = Y[1][i];
         obj3.x = X[2][i];
         obj3.y = Y[2][i];
-        $("#yearsPassed").text(`Years Passed: ${(t[i]/yearSec).toFixed(2)}`);
+        if(typeof t[i] != "undefined") $("#yearsPassed").text(`Years Passed: ${(t[i]/yearSec).toFixed(2)}`);
+        else $("#yearsPassed").text(`Years Passed: 0`);
+
         i+=1;
     }
 

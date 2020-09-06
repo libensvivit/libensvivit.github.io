@@ -76,17 +76,26 @@ def dR(r, m):
 
     return np.array([V1X, V1Y, V2X, V2Y, V3X, V3Y, dx1, dy1, dx2, dy2, dx3, dy3])
 
-def getLimits(X, Y, padding):
+def arangeLimits(X, Y, padding):
     xMin = np.amin([np.amin(X[0]), np.amin(X[1]), np.amin(X[2])])
     xMax = np.amax([np.amax(X[0]), np.amax(X[1]), np.amax(X[2])])
 
     yMin = np.amin([np.amin(Y[0]), np.amin(Y[1]), np.amin(Y[2])])
     yMax = np.amax([np.amax(Y[0]), np.amax(Y[1]), np.amax(Y[2])])
 
+    #xMin = remap(xMin, -1.5e12, 1.5e12, 0, 512)
+    #xMax = remap(xMax, -1.5e12, 1.5e12, 0, 512)
+    
+    #yMin = remap(yMin, -1.5e12, 1.5e12, 0, 512)
+    #yMax = remap(yMax, -1.5e12, 1.5e12, 0, 512)
+
     xlims = [xMin - padding, xMax + padding]
     ylims = [yMin - padding, yMax + padding]
 
-    return xlims, ylims
+    X = remap(X, xlims[0], xlims[1], 0, 512)
+    Y = remap(Y, ylims[0], ylims[1], 0, 512)
+
+    return np.array([X, Y])
 
 def generate3Body(stopCond, numSteps):
     tStop = stopCond[0]
@@ -159,12 +168,9 @@ def generate3Body(stopCond, numSteps):
     return [[x1, y1, x2, y2, x3, y3], t, m, rad, collision]  
 
 
-def getInteresting3Body(stopCond, numSteps):
+def getInteresting3Body(minTime, maxTime, maxSep, numSteps):
     yearSec = 365*24*3600
     interesting = False
-    minTime = 15 # in years
-    maxTime = 30 # in years
-    maxSep = stopCond[1]
 
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):
@@ -177,19 +183,13 @@ def getInteresting3Body(stopCond, numSteps):
 
 
 def getReadyForPlot():
-    [plotData, t, m, rad, collision] = getInteresting3Body([50, 120], 2000)
+    [plotData, t, m, rad, collision] = getInteresting3Body(10, 80, 120, 1500)
     #print(len(plotData[0]))
 
     X = np.asarray([plotData[0], plotData[2], plotData[4]])
     Y = np.asarray([plotData[1], plotData[3], plotData[5]])
 
-    X = remap(X, -1.5e12, 1.5e12, 0, 512)
-    Y = remap(Y, -1.5e12, 1.5e12, 0, 512)
-
-    limits = getLimits(X, Y, 200)
-
-    X = remap(X, limits[0][0], limits[0][1], 0, 512)
-    Y = remap(Y, limits[1][0], limits[1][1], 0, 512)
+    X, Y = arangeLimits(X, Y, 200)
 
     #rad = remap(rad/7e8, 6.3, 29.9, 5, 15)
     rad /= 7e8

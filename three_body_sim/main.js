@@ -90,12 +90,11 @@ function setup(){
 
 function gameLoop(delta){
     $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/10`);
-    if(readyForPlot.length == 20){
-        $("#work").text("Working status: Inactive")
+    if(readyForPlot.length == 10){
+        $("#work").text("Working status: Inactive");
     } else {
-        $("#work").text("Working status: Active")
+        $("#work").text("Working status: Active");
     }
-    
 
     if(!stopped){
         obj1.x = X[0][i];

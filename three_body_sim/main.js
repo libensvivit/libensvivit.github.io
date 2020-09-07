@@ -64,6 +64,10 @@ var com = {
 var DEFAULT = com;
 
 var worker1 = new Worker('webworker.js');
+$("#minTime").val(DEFAULT.minTime);
+$("#maxTime").val(DEFAULT.maxTime);
+$("#maxSep").val(DEFAULT.maxSep);
+$("#numSteps").val(DEFAULT.numSteps);
 worker1.postMessage(com);
 
 startTime = performance.now();
@@ -71,10 +75,6 @@ startTime = performance.now();
 worker1.onmessage = (e) => {
     if (e.data == "active") {
         $("#work").text("Working status: Active");
-        $("#minTime").val(DEFAULT.minTime);
-        $("#maxTime").val(DEFAULT.maxTime);
-        $("#maxSep").val(DEFAULT.maxSep);
-        $("#numSteps").val(DEFAULT.numSteps);
     }
 
     if(typeof e.data.flag != 'undefined' && e.data.flag == "generatedData"){

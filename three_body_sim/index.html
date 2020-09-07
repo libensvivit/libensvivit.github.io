@@ -10,15 +10,31 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="yearsPassed">Years passed: 0</div>
-    <div id="work">Working status: Preparing..</div>
-    <div><span id="readyplot">Ready for plotting: 0/10</span><span id="iter"></span></div><br>
-    <div id="IterationPerSecond">Iteration/Second: 0</div>
-    <div id="success">Iteration/Success: 0</div>
-    <div id="secondPerSuccess">Second/Success: 0</div>
-    <div id="secondPerPlot">Second/Plot: 0</div>
-    <div id="log"></div>
+    <div class="row">
+        <div id="statistics" class="column">
+            <div id="yearsPassed">Years passed: 0</div>
+            <div id="work">Working status: Preparing..</div>
+            <div><span id="readyplot">Ready for plotting: 0/10</span><span id="iter"></span></div><br>
+            <div id="IterationPerSecond">Iteration/Second: 0</div>
+            <div id="success">Iteration/Success: 0</div>
+            <div id="secondPerSuccess">Second/Success: 0</div>
+            <div id="secondPerPlot">Second/Plot: 0</div>
+        </div>
+        
+        <form id="userInputs" class="column">
+            <label for="numSteps"># steps:</label>
+            <input type="text" name="numSteps" id="numSteps" size=5><br>
+            <label for="minTime">Min. years:</label>
+            <input type="text" name="minTime" id="minTime" size=5><br>
+            <label for="maxTime">Max. years:</label>
+            <input type="text" name="maxTime" id="maxTime" size=5><br>
+            <label for="maxSep">Max. seperation:</label>
+            <input type="text" name="maxSep" id="maxSep" size=5><br>
+        </form>
+    </div>
+
     
+
     <script src="main.js"></script>
     <script>
         function doThis(){

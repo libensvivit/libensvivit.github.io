@@ -181,16 +181,17 @@ def getInteresting3Body(minTime, maxTime, maxSep, numSteps):
             print(f"Found interesting configuration after {i} iterations!")
             return [plotData, t, m, rad, collision]
 
-
-def getReadyForPlot():
-    [plotData, t, m, rad, collision] = getInteresting3Body(10, 80, 120, 1500)
+def getReadyForPlot(com = { #default parameters
+    "minTime": 10, "maxTime": 80,
+    "maxSep": 120, "numSteps": 1500
+}):
+    [plotData, t, m, rad, collision] = getInteresting3Body(com['minTime'], com['maxTime'], com['maxSep'], com['numSteps'])
     #print(len(plotData[0]))
 
     X = np.asarray([plotData[0], plotData[2], plotData[4]])
     Y = np.asarray([plotData[1], plotData[3], plotData[5]])
 
     X, Y = arangeLimits(X, Y, 200)
-
     #rad = remap(rad/7e8, 6.3, 29.9, 5, 15)
     rad /= 7e8
     #print("Now you should see something.")

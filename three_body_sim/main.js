@@ -9,14 +9,17 @@ function divConsole(div){
     }
 }
 
+var canvasHeight = window.innerHeight*0.75;
+var canvasWidth = canvasHeight;
+
 let app = new PIXI.Application({
-    width: 512,
-    height: 512,
+    width: canvasWidth,
+    height: canvasHeight,
     antialias: true,
     backgroundColor: 0xdddddd
 });
 
-console.log = divConsole("log");
+//console.log = divConsole("log");
 
 class Circle{
     constructor(param){
@@ -42,27 +45,45 @@ var readyForPlot = [];
 var ready = false;
 var stopped = false;
 var initialized_PIXI = false;
-var working = true;
-var worker1 = new Worker('webworker.js');
 var totalIterations = 0;
 var totalPlotSeconds = 0;
 var totalPlots = 0;
 var successedIterations = 0;
 var startTime = 0;
 var startTimePlot = 0;
+var waitingDataLimit = 10;
 var i = 0;
 var yearSec = 365*24*3600;
+var working = true;
+var com = {
+    "flag": "init",
+    "width": canvasWidth, "height": canvasHeight,
+    "minTime": 10, "maxTime": 80,
+    "maxSep": 120, "numSteps": 1500
+}
+var DEFAULT = com;
+
+var worker1 = new Worker('webworker.js');
+worker1.postMessage(com);
 
 startTime = performance.now();
 
 worker1.onmessage = (e) => {
-    if (e.data == "active") $("#work").text("Working status: Active");
-    if(typeof e.data.whatType != 'undefined' && e.data.whatType == "generatedData"){
+    if (e.data == "active") {
+        $("#work").text("Working status: Active");
+        $("#minTime").val(DEFAULT.minTime);
+        $("#maxTime").val(DEFAULT.maxTime);
+        $("#maxSep").val(DEFAULT.maxSep);
+        $("#numSteps").val(DEFAULT.numSteps);
+    }
+
+    if(typeof e.data.flag != 'undefined' && e.data.flag == "generatedData"){
             try{
                 readyForPlot.push(e.data.data);
                 successedIterations += 1;
             }
             catch(e){}
+
             ready = true;
             working = false;
     }
@@ -88,10 +109,21 @@ function setup(){
     app.ticker.add(delta => gameLoop(delta))
 }
 
+function reset(){
+    readyForPlot = [];
+    totalIterations = 0;
+    totalPlotSeconds = 0;
+    totalPlots = 0;
+    successedIterations = 0;
+    startTime = 0;
+    startTimePlot = 0;
+    waitingDataLimit = 10;
+    i = 0;
+}
 
 function gameLoop(delta){
-    $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/10`);
-    if(readyForPlot.length == 10){
+    $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/${waitingDataLimit}`);
+    if(readyForPlot.length == waitingDataLimit){
         $("#work").text("Working status: Inactive");
     } else {
         $("#work").text("Working status: Active");
@@ -105,7 +137,7 @@ function gameLoop(delta){
         obj3.x = X[2][i];
         obj3.y = Y[2][i];
         if(typeof t[i] != "undefined") $("#yearsPassed").text(`Years passed: ${(t[i]/yearSec).toFixed(2)}`);
-        else $("#yearsPassed").text(`Years Passed: 0`);
+        else $("#yearsPassed").text(`Years passed: 0`);
 
         i+=1;
     }
@@ -115,14 +147,14 @@ function gameLoop(delta){
             X = readyForPlot[0][0];
             Y = readyForPlot[0][1];
             rad = readyForPlot[0][2];
-            t = readyForPlot[0][3]
+            t = readyForPlot[0][3];
             
             totalIterations += X[0].length;
             let passedSeconds = (performance.now() - startTime)/1000;
-            $("#IterationPerSecond").text(`Iteration/Second: ${totalIterations/passedSeconds}`)
-            $("#success").text(`Iteration/Success: ${totalIterations/successedIterations}`);
-            $("#secondPerSuccess").text(`Second/Success: ${passedSeconds/successedIterations}`);            
-            $("#secondPerPlot").text(`Second/Plot: ${totalPlotSeconds/totalPlots}`);
+            $("#IterationPerSecond").text(`Iteration/Second: ${(totalIterations/passedSeconds).toFixed(4)}`)
+            $("#success").text(`Iteration/Success: ${(totalIterations/successedIterations).toFixed(4)}`);
+            $("#secondPerSuccess").text(`Second/Success: ${(passedSeconds/successedIterations).toFixed(4)}`);            
+            $("#secondPerPlot").text(`Second/Plot: ${(totalPlotSeconds/totalPlots).toFixed(4)}`);
 
             obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
             obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
@@ -133,9 +165,20 @@ function gameLoop(delta){
         }
     }
 
-    if(!working && readyForPlot.length < 10){
+    if(!working && readyForPlot.length < waitingDataLimit){
         working = true;
-        worker1.postMessage("generateData");
+        com = {
+            "flag": "config",
+            "width": canvasWidth, "height": canvasHeight,
+            "minTime": parseInt($("#minTime").val()), "maxTime": parseInt($("#maxTime").val()),
+            "maxSep": parseInt($("#maxSep").val()), "numSteps": parseInt($("#numSteps").val())
+        }
+
+        if(com.flag != DEFAULT.flag || com.minTime != DEFAULT.minTime ||
+           com.maxTime != DEFAULT.maxTime || com.maxSep != DEFAULT.maxSep ||
+           com.numSteps != DEFAULT.numSteps) "";//reset();
+
+        worker1.postMessage(com);
     }
 
     if(i > X[0].length && stopped == false){

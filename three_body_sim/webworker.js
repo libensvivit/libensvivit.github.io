@@ -9,7 +9,7 @@ function initialize(){
                 .then(response => response.text())
                 .then(pythonCode => {
                     pyodide.runPython(pythonCode);
-                    $("#work").text("Working status: Active");
+                    postMessage("active");
                 }).then(() => {
                     generateData();
                 });

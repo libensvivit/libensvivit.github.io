@@ -56,6 +56,7 @@ var yearSec = 365*24*3600;
 startTime = performance.now();
 
 worker1.onmessage = (e) => {
+    if (e.data == "active") $("#work").text("Working status: Active");
     if(typeof e.data.whatType != 'undefined' && e.data.whatType == "generatedData"){
             try{
                 readyForPlot.push(e.data.data);

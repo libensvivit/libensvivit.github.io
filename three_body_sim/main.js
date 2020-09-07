@@ -118,7 +118,8 @@ function gameLoop(delta){
             t = readyForPlot[0][3]
             
             totalIterations += X[0].length;
-            passedSeconds = (performance.now() - startTime)/1000;
+            let passedSeconds = (performance.now() - startTime)/1000;
+            $("#IterationPerSecond").text(`Iteration/Second: ${totalIterations/passedSeconds}`)
             $("#success").text(`Iteration/Success: ${totalIterations/successedIterations}`);
             $("#secondPerSuccess").text(`Second/Success: ${passedSeconds/successedIterations}`);            
             $("#secondPerPlot").text(`Second/Plot: ${totalPlotSeconds/totalPlots}`);

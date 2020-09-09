@@ -190,7 +190,7 @@ var Objects = {
                                 .append($("<span id='name'>").text(" Tachsin"))
                                 .append($("<span id='nickname'>").text("Mr. Fettuccine")))
                             .append($("<div class='header-icons'>")
-                                .append($("<a id='twitter' href='https://twitter.com/libensvivit' target='_blank'>")
+                                .append($("<a id='twitter' href='https://twitter.com/_elantris' target='_blank'>")
                                     .append($("<i class='icon fa fa-twitter'>")))
                                 .append($("<a id='github' href='https://github.com/libensvivit' target='_blank'>")
                                     .append($("<i class='icon fa fa-github-alt'>")))

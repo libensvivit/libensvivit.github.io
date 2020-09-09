@@ -349,7 +349,7 @@ var Objects = {
 // ON FIRST LOAD //
 {
     // RANDOM WALLPAPER SELECTOR //
-    var N = 14;
+    var N = 16;
     var full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
     var bg_style = "background-image: url(" + full_IMG + ");";
     $("#particles-js").attr("style", bg_style);

@@ -39,7 +39,7 @@ class Circle{
     }
 }
 
-var obj1, obj2, obj3, X, Y, rad;
+var obj1, obj2, obj3, X, Y, rad, t;
 var waitingMessage = false;
 var readyForPlot = [];
 var ready = false;

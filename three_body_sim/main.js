@@ -55,6 +55,7 @@ var waitingDataLimit = 10;
 var i = 0;
 var yearSec = 365*24*3600;
 var working = true;
+var objects = [];
 var com = {
     "flag": "init",
     "width": canvasWidth, "height": canvasHeight,
@@ -156,9 +157,6 @@ function gameLoop(delta){
             $("#secondPerSuccess").text(`Second/Success: ${(passedSeconds/successedIterations).toFixed(4)}`);            
             $("#secondPerPlot").text(`Second/Plot: ${(totalPlotSeconds/totalPlots).toFixed(4)}`);
 
-            obj1 = new Circle({x:X[0][0], y:Y[0][1], rad:rad[0], color:0xCCCC33});
-            obj2 = new Circle({x:X[1][0], y:Y[1][1], rad:rad[1], color:0xFFBB23});
-            obj3 = new Circle({x:X[2][0], y:Y[2][1], rad:rad[2], color:0xBBEE16});
             readyForPlot.shift();
             stopped = false;
             startTimePlot = performance.now();

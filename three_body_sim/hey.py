@@ -12,18 +12,20 @@ def rand(r1, r2, n):
     return remap(np.random.rand(1, n), 0, 1, r1, r2)[0]
 
 def getInitConditions():
-    m = rand(5, 120, 3)
+    m = rand(10, 70, 3)
     #rad = m**0.8 #(6.3, 29.9)
     m *= 2e30
     rad = rand(10, 10, 3)
-    rad *= 7e8
+    rad *= 7e8 #(4.41e9, 2.093e10)
 
-    pos1 = rand(-10, 10, 2)
+    randomParameters = (-10, 10, 2)
+
+    pos1 = rand(*randomParameters)
 
     def getPosition2(pos1):
         accept2 = False
         while not accept2:
-            pos2 = rand(-10, 10, 2)
+            pos2 = rand(*randomParameters)
             dist12 = ((pos1[0]-pos2[0])**2+(pos1[1]-pos2[1])**2)**(1/2)
             if (dist12*1.5e11) > (rad[0] + rad[1]):
                 accept2 = True
@@ -34,7 +36,7 @@ def getInitConditions():
     def getPosition3(pos1, pos2):
         accept3 = False
         while not accept3:
-            pos3 = rand(-10, 10, 2)
+            pos3 = rand(*randomParameters)
             dist13 = ((pos1[0]-pos3[0])**2+(pos1[1]-pos3[1])**2)**(1/2)
             dist23 = ((pos2[0]-pos3[0])**2+(pos2[1]-pos3[1])**2)**(1/2)
             if (dist13*1.5e11) > (rad[0]+rad[2]) and (dist23*1.5e11) > (rad[1]+rad[2]):
@@ -76,26 +78,33 @@ def dR(r, m):
 
     return np.array([V1X, V1Y, V2X, V2Y, V3X, V3Y, dx1, dy1, dx2, dy2, dx3, dy3])
 
-def arangeLimits(X, Y, padding):
+def arangeLimits(X, Y, rad, padding):
     xMin = np.amin([np.amin(X[0]), np.amin(X[1]), np.amin(X[2])])
     xMax = np.amax([np.amax(X[0]), np.amax(X[1]), np.amax(X[2])])
 
     yMin = np.amin([np.amin(Y[0]), np.amin(Y[1]), np.amin(Y[2])])
     yMax = np.amax([np.amax(Y[0]), np.amax(Y[1]), np.amax(Y[2])])
 
-    #xMin = remap(xMin, -1.5e12, 1.5e12, 0, 512)
-    #xMax = remap(xMax, -1.5e12, 1.5e12, 0, 512)
+    dx = xMax - xMin
+    dy = yMax - yMin
+
+    if(dx > dy):
+        xlims=[xMin-padding,xMax+padding]
+        ylims=[yMin-padding,yMin+dx+padding]
+        #rad = remap(rad, xMin, dx, 0, 512)
+    else:
+        xlims=[xMin-padding,xMin+dy+padding]
+        ylims=[yMin-padding,yMax+padding]
+        #rad = remap(rad, yMin, dy, 0, 512)
+
     
-    #yMin = remap(yMin, -1.5e12, 1.5e12, 0, 512)
-    #yMax = remap(yMax, -1.5e12, 1.5e12, 0, 512)
-
-    xlims = [xMin - padding, xMax + padding]
-    ylims = [yMin - padding, yMax + padding]
-
     X = remap(X, xlims[0], xlims[1], 0, 512)
     Y = remap(Y, ylims[0], ylims[1], 0, 512)
 
-    return np.array([X, Y])
+    #rad = remap(rad, 4.41e9, 2.093e10, 7.5264, 35.72)
+    rad /= 7e8
+
+    return np.array([X, Y]), np.array(rad)
 
 def generate3Body(stopCond, numSteps):
     tStop = stopCond[0]
@@ -148,12 +157,14 @@ def generate3Body(stopCond, numSteps):
             sep13 = ((x1[i]-x3[i])**2+(y1[i]-y3[i])**2)**(1/2)
             sep23 = ((x3[i]-x2[i])**2+(y3[i]-y2[i])**2)**(1/2)
 
+            #print(min12/1.5e11, sep12)
+
             if(sep13 < min12 or sep13 < min13 or sep23 < min23 or sep12 > sepStop or sep13 > sepStop or sep23 > sepStop):
-                #if(sep12 < min12 or sep13 < min13 or sep23 < min23):
-                    #print("COLLISION OCCURED!")
-                    #print(f"sep12 {sep12}, sep13 {sep13}, sep23 {sep23}")
-                    #print(f"min12 {min12}, min13 {min13}, min23 {min23}")
-                    #collision = True
+                if(sep12 < min12 or sep13 < min13 or sep23 < min23):
+                    print("COLLISION OCCURED!")
+                    print(f"sep12 {sep12}, sep13 {sep13}, sep23 {sep23}")
+                    print(f"min12 {min12}, min13 {min13}, min23 {min23}")
+                    collision = True
                 
                 stop = True
                 t = np.linspace(0, currentT, i)
@@ -175,11 +186,13 @@ def getInteresting3Body(minTime, maxTime, maxSep, numSteps):
     print("Searching for interesting three body. Please be patient...")
     for i in range(1, 10000):
         #counter.innerHTML = f" --> {i}"
-        [plotData, t, m, rad, collision] = generate3Body([maxTime*yearSec, maxSep*1.5e11], numSteps)
-        if(t[-1]/yearSec > minTime and len(t) != numSteps+1): interesting = True
-        if(interesting):
-            print(f"Found interesting configuration after {i} iterations!")
-            return [plotData, t, m, rad, collision]
+        try:
+            [plotData, t, m, rad, collision] = generate3Body([maxTime*yearSec, maxSep*1.5e11], numSteps)
+            if(t[-1]/yearSec > minTime and len(t) != numSteps+1): interesting = True
+            if(interesting):
+                print(f"Found interesting configuration after {i} iterations!")
+                return [plotData, t, m, rad, collision]
+        except: continue
 
 def getReadyForPlot(com = { #default parameters
     "minTime": 10, "maxTime": 80,
@@ -191,8 +204,8 @@ def getReadyForPlot(com = { #default parameters
     X = np.asarray([plotData[0], plotData[2], plotData[4]])
     Y = np.asarray([plotData[1], plotData[3], plotData[5]])
 
-    X, Y = arangeLimits(X, Y, 200)
+    [X, Y], rad = arangeLimits(X, Y, rad, 3e12)
     #rad = remap(rad/7e8, 6.3, 29.9, 5, 15)
-    rad /= 7e8
+    #rad /= 7e8
     #print("Now you should see something.")
     return [X, Y, rad, t]

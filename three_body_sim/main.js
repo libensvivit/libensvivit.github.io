@@ -9,6 +9,26 @@ function divConsole(div){
     }
 }
 
+function setCookie(cname, cvalue){
+    document.cookie = cname + "=" + cvalue + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
 var canvasHeight = window.innerHeight*0.75;
 var canvasWidth = canvasHeight;
 
@@ -59,16 +79,24 @@ var objects = [];
 var com = {
     "flag": "init",
     "width": canvasWidth, "height": canvasHeight,
-    "minTime": 10, "maxTime": 80,
-    "maxSep": 120, "numSteps": 1500
+    "minTime": 15, "maxTime": 80,
+    "maxSep": 120, "numSteps": 2000
 }
 var DEFAULT = com;
 
 var worker1 = new Worker('webworker.js');
-$("#minTime").val(DEFAULT.minTime);
-$("#maxTime").val(DEFAULT.maxTime);
-$("#maxSep").val(DEFAULT.maxSep);
-$("#numSteps").val(DEFAULT.numSteps);
+if(getCookie("minTime") == null){
+    $("#minTime").val(DEFAULT.minTime);
+    $("#maxTime").val(DEFAULT.maxTime);
+    $("#maxSep").val(DEFAULT.maxSep);
+    $("#numSteps").val(DEFAULT.numSteps);
+} else{
+    $("#minTime").val(getCookie("minTime"));
+    $("#maxTime").val(getCookie("maxTime"));
+    $("#maxSep").val(getCookie("maxSep"));
+    $("#numSteps").val(getCookie("numSteps"));
+}
+
 worker1.postMessage(com);
 
 startTime = performance.now();
@@ -165,12 +193,19 @@ function gameLoop(delta){
 
     if(!working && readyForPlot.length < waitingDataLimit){
         working = true;
+        
+        setCookie("minTime", parseInt($("#minTime").val()));
+        setCookie("maxTime", parseInt($("#maxTime").val()));
+        setCookie("maxSep", parseInt($("#maxSep").val()));
+        setCookie("numSteps", parseInt($("#numSteps").val()));
+        
         com = {
             "flag": "config",
             "width": canvasWidth, "height": canvasHeight,
             "minTime": parseInt($("#minTime").val()), "maxTime": parseInt($("#maxTime").val()),
             "maxSep": parseInt($("#maxSep").val()), "numSteps": parseInt($("#numSteps").val())
         }
+        
 
         if(com.flag != DEFAULT.flag || com.minTime != DEFAULT.minTime ||
            com.maxTime != DEFAULT.maxTime || com.maxSep != DEFAULT.maxSep ||

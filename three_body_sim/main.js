@@ -85,7 +85,7 @@ var com = {
 var DEFAULT = com;
 
 var worker1 = new Worker('webworker.js');
-if(getCookie("minTime") == null){
+if(getCookie("minTime") == null || getCookie("minTime") == "NaN"){
     $("#minTime").val(DEFAULT.minTime);
     $("#maxTime").val(DEFAULT.maxTime);
     $("#maxSep").val(DEFAULT.maxSep);

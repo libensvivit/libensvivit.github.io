@@ -7,8 +7,13 @@
     }
 }
 
-var currentLoader = "Home", analyser = null, context = null, loadMusicSync = null;
-var pitch = 0, collapsed = false, EPICYCLES;
+var currentLoader = "Home";
+var analyser = null;
+var context = null;
+var loadMusicSync = null;
+var pitch = 0;
+var collapsed = false;
+var EPICYCLES;
 var width = document.body.clientWidth;
 var height = document.body.clientHeight;
 
@@ -88,6 +93,7 @@ var height = document.body.clientHeight;
         var ac = autoCorrelate(buf, context.sampleRate);
         if(ac !== -1 && ac < 5000){
             pitch = ac;
+            console.log(pitch); //////////////////////////////
         }
         requestID = window.requestAnimationFrame(updatePitch);
     }

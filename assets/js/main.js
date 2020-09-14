@@ -98,7 +98,7 @@ var height = document.body.clientHeight;
             if($("#checkbox-music").prop("checked")){
                 context = new AudioContext();
                 await init({audio: true});
-                alert("experimental");
+                alert("now you should see particles jumping, sometimes it works");
             } else{
                 window.cancelAnimationFrame(requestID);
                 analyser = null, stream = null, microphone = null;

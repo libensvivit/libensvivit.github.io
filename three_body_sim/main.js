@@ -79,8 +79,8 @@ var objects = [];
 var com = {
     "flag": "init",
     "width": canvasWidth, "height": canvasHeight,
-    "minTime": 15, "maxTime": 80,
-    "maxSep": 120, "numSteps": 2000
+    "minTime": 20, "maxTime": 70,
+    "maxSep": 120, "numSteps": 1500
 }
 var DEFAULT = com;
 
@@ -103,13 +103,18 @@ startTime = performance.now();
 
 worker1.onmessage = (e) => {
     if (e.data == "active") {
-        $("#work").text("Working status: Active");
+        $("#work").text("Running..");
     }
 
     if(typeof e.data.flag != 'undefined' && e.data.flag == "generatedData"){
             try{
                 readyForPlot.push(e.data.data);
                 successedIterations += 1;
+                if(readyForPlot.length == waitingDataLimit){
+                    $("#work").text("Stopped.");
+                } else {
+                    $("#work").text("Running..");
+                }
             }
             catch(e){}
 
@@ -152,11 +157,6 @@ function reset(){
 
 function gameLoop(delta){
     $("#readyplot").text(`Ready for plotting: ${readyForPlot.length}/${waitingDataLimit}`);
-    if(readyForPlot.length == waitingDataLimit){
-        $("#work").text("Working status: Inactive");
-    } else {
-        $("#work").text("Working status: Active");
-    }
 
     if(!stopped){
         obj1.x = X[0][i];
@@ -165,8 +165,8 @@ function gameLoop(delta){
         obj2.y = Y[1][i];
         obj3.x = X[2][i];
         obj3.y = Y[2][i];
-        if(typeof t[i] != "undefined") $("#yearsPassed").text(`Years passed: ${(t[i]/yearSec).toFixed(2)}`);
-        else $("#yearsPassed").text(`Years passed: 0`);
+        if(typeof t[i] != "undefined") $("#yearsPassed").text(`${(t[i]/yearSec).toFixed(2)}`);
+        else $("#yearsPassed").text(`0`);
 
         i+=1;
     }

@@ -79,7 +79,7 @@ var objects = [];
 var com = {
     "flag": "init",
     "width": canvasWidth, "height": canvasHeight,
-    "minTime": 1, "maxTime": 70,
+    "minTime": 15, "maxTime": 70,
     "maxSep": 120, "numSteps": 1500
 }
 var DEFAULT = com;

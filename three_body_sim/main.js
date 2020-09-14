@@ -79,7 +79,7 @@ var objects = [];
 var com = {
     "flag": "init",
     "width": canvasWidth, "height": canvasHeight,
-    "minTime": 20, "maxTime": 70,
+    "minTime": 1, "maxTime": 70,
     "maxSep": 120, "numSteps": 1500
 }
 var DEFAULT = com;
@@ -112,8 +112,6 @@ worker1.onmessage = (e) => {
                 successedIterations += 1;
                 if(readyForPlot.length == waitingDataLimit){
                     $("#work").text("Stopped.");
-                } else {
-                    $("#work").text("Running..");
                 }
             }
             catch(e){}
@@ -190,7 +188,7 @@ function gameLoop(delta){
             startTimePlot = performance.now();
         }
     }
-
+    
     if(!working && readyForPlot.length < waitingDataLimit){
         working = true;
         
@@ -206,7 +204,8 @@ function gameLoop(delta){
             "maxSep": parseInt($("#maxSep").val()), "numSteps": parseInt($("#numSteps").val())
         }
         
-
+        $("#work").text("Running..");
+        
         if(com.flag != DEFAULT.flag || com.minTime != DEFAULT.minTime ||
            com.maxTime != DEFAULT.maxTime || com.maxSep != DEFAULT.maxSep ||
            com.numSteps != DEFAULT.numSteps) "";//reset();

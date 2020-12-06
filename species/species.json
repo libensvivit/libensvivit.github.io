@@ -94,5 +94,17 @@
       "img":"elysia_chlorotica.jpg",
       "credit":"Image credit: Patrick J. Krug",
       "name":"Eastern emerald elysia"
+   },
+   "clione_limacina":{
+      "scientific":"Clione limacina",
+      "img":"clione_limacina.jpg",
+      "credit":"Image credit: Kevin Raskoff, NOAA",
+      "name":"Sea angel (Naked sea butterfly)"
+   },
+   "papilio_peranthus":{
+      "scientific":"Papilio peranthus",
+      "img":"papilio_peranthus.png",
+      "credit":"Image credit: Mark Wong",
+      "name":"Swallowtail butterfly"
    }
 }

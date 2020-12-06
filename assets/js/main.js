@@ -230,8 +230,8 @@ var Objects = {
         name: "About Me", href: "http://achmet.tachsin.com/"
     },
     
-    Species_μGallery: {
-        name: "Species μGallery", href: "/species/", 
+    Species_Gallery: {
+        name: "Species Gallery", href: "/species/", 
         // Load: function(){
         //     Objects.Home.Unload();
         //     currentLoader = this.innerHTML;

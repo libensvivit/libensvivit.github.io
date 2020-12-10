@@ -352,7 +352,7 @@ var Objects = {
     },
 
     Landau_Lifshitz: {
-        name: "Landau-Lifshitz Viz", href: "/landau_lifshitz/"
+        name: "Landau-Lifshitz Vis.", href: "/landau_lifshitz/"
     },
 }
 

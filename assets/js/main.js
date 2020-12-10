@@ -349,7 +349,11 @@ var Objects = {
 
     Three_Body: {
         name: "Three Body Simulation", href: "/three_body_sim/"
-    }
+    },
+
+    Landau_Lifshitz: {
+        name: "Landau-Lifshitz Viz", href: "/landau_lifshitz/"
+    },
 }
 
 // ON FIRST LOAD //

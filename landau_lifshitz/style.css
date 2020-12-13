@@ -18,4 +18,5 @@ html, body {
     top: 5%;
     transform: translateX(100%);
     font-size: 25px;
+    pointer-events:none;
 }

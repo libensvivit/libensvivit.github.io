@@ -4,11 +4,21 @@
     <meta charset="utf-8" />
     <title>Landau-Lifshitz Visualization</title>
     <link rel="stylesheet" href="style.css">
-
     <script src="mathjax/tex-chtml.js" id="MathJax-script" async></script>
+    <script>
+      MathJax = {
+        options: {
+          renderActions: {
+            addMenu: []
+          }
+        }
+      };
+    </script>
+
   </head>
   <body>
     <canvas id="canvas"></canvas>
+
     <div id="equation">
       $$\frac{\partial \pmb M}{\partial t} = - \gamma \pmb M \times \pmb H_{eff} - \lambda \pmb M \times \left( \pmb M \times \pmb H_{eff} \right)$$
     </div>

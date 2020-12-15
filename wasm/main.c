@@ -1,12 +1,9 @@
 #include <stdio.h>
-#include <emscripten.h>
 
-EMSCRIPTEN_KEEPALIVE
-void sayHi() {
-  printf("Hi!\n");
-}
+#ifdef __EMSCRIPTEN__
+	#include <emscripten.h>
+#endif
 
-EMSCRIPTEN_KEEPALIVE
-int daysInWeek() {
-  return 7;
+extern "C" int main(int argc, char** argv) {
+	printf("hello, world!\n");
 }

@@ -227,7 +227,7 @@ var Objects = {
     },
 
     About_Me: {
-        name: "About Me", href: "http://achmet.tachsin.com/"
+        name: "About Me", href: "https://achmet.tachsin.com/"
     },
     
     Species_Gallery: {
@@ -353,6 +353,10 @@ var Objects = {
 
     Landau_Lifshitz: {
         name: "Landau-Lifshitz Vis.", href: "/landau_lifshitz/"
+    },
+
+    V2: {
+        name: "rebuild(vue)", href: "https://sandbox.tachsin.com/"
     },
 }
 

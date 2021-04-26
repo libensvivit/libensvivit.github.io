@@ -356,13 +356,13 @@ var Objects = {
     },
 
     V2: {
-        name: "rebuild(vue)", href: "https://sandbox.tachsin.com/"
+        name: "v2", href: "https://tachsin.com/tachsin/"
     },
 }
 
 // ON FIRST LOAD //
 {
-    // RANDOM WALLPAPER SELECTOR //
+    // RANDOM WALLPAPER SELECTION //
     var N = 16;
     var full_IMG = "'/assets/background-img/" + (Math.floor(Math.random() * N) + 1) + ".webp'";
     var bg_style = "background-image: url(" + full_IMG + ");";

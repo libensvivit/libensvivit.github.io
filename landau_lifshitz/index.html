@@ -4,15 +4,12 @@
     <meta charset="utf-8" />
     <title>Landau-Lifshitz Visualization</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/tweakpane@3.0.2/dist/tweakpane.min.js"></script>
     <script src="mathjax/tex-chtml.js" id="MathJax-script" async></script>
     <script>MathJax={options:{renderActions:{addMenu:[]}}};</script>
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    <div id="fps">FPS: </div>
-    <div id="sim">Sim Time: </div>
-    <div id="real">Real Time: </div>
-
     <div id="equation">
       $$\frac{\partial \pmb M}{\partial t} = - \gamma \pmb M \times \pmb H_{eff} - \alpha\frac{\gamma}{M_{s}} \pmb M \times \left( \pmb M \times \pmb H_{eff} \right)$$
     </div>

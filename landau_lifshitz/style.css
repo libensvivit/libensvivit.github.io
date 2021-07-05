@@ -6,31 +6,10 @@ html, body {
     margin: 0;
 }
 
-#fps{
-    position: fixed;
-    top: 5%;
-    left: 5%;
-    font-size: 25px;
-}
-
-#sim{
-    position: fixed;
-    top: 10%;
-    left: 5%;
-    font-size: 25px;
-}
-
-#real{
-    position: fixed;
-    bottom: 10%;
-    left: 5%;
-    font-size: 25px;
-}
-
 #equation{
     position: fixed;
-    top: 5%;
-    transform: translateX(100%);
-    font-size: 25px;
+    bottom: 5%;
+    transform: translateX(70%);
+    font-size: 100%;
     pointer-events:none;
 }

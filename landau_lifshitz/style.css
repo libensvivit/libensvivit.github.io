@@ -9,7 +9,7 @@ html, body {
 #equation{
     position: fixed;
     bottom: 5%;
-    transform: translateX(70%);
-    font-size: 100%;
+    transform: translateX(65%);
+    font-size: 200%;
     pointer-events:none;
 }

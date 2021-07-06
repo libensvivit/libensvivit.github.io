@@ -348,7 +348,7 @@ var Objects = {
     },
 
     Many_Body: {
-        name: "Three Body Simulation", href: "/many_body/"
+        name: "Classical N-body", href: "/classical_nbody/"
     },
 
     Landau_Lifshitz: {

@@ -291,9 +291,9 @@ var Objects = {
         name: "Voxel Buffer", href: "/voxel_buffer/",
     },
     
-    Electric_Field: {
+    /*Electric_Field: {
         name: "Electric Field", href: "/electric_field/",
-    },
+    },*/
     
     /*Texture_Popout: {
         name: "Texture Pop-Out", href: "/texture_popout/",

@@ -350,8 +350,12 @@ var Objects = {
         name: "Landau-Lifshitz Vis.", href: "/landau_lifshitz/"
     },
 
-    V2: {
+    /*V2: {
         name: "v2", href: "https://tachsin.com/tachsin/"
+    },*/
+
+    Visual_Ex: {
+        name: "Lenka", href: "/visual_ex"
     },
 }
 

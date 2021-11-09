@@ -26,7 +26,7 @@ var userInterface, slider, draw_text, epicycles_text, sliderValue = 0, fps, draw
         
         optimizeCheckBox = $("<p>")
             .append("<label for='checkbox-2'>").text("Optimize the path ")
-            .append("<input type='checkbox' name='checkbox-2' id='checkbox-2' checked>")
+            .append("<input type='checkbox' name='checkbox-2' id='checkbox-2'>")
         
         userInterface.append($("<p>").append(epicycles_text).append(fps));
         userInterface.append(slider);

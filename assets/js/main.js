@@ -295,9 +295,9 @@ var Objects = {
         name: "Electric Field", href: "/electric_field/",
     },*/
     
-    /*Texture_Popout: {
+    Texture_Popout: {
         name: "Texture Pop-Out", href: "/texture_popout/",
-    },*/
+    },
 
     Shaders: {
         name: "Shaders", href: null,

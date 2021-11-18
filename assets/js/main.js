@@ -350,9 +350,9 @@ var Objects = {
         name: "Landau-Lifshitz Vis.", href: "/landau_lifshitz/"
     },
 
-    /*V2: {
-        name: "v2", href: "https://tachsin.com/tachsin/"
-    },*/
+    Futuringo: {
+        name: "Futuringo", href: "https://futuringo.com/"
+    },
 
     Visual_Ex: {
         name: "Lenka", href: "/visual_ex"

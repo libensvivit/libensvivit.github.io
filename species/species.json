@@ -106,5 +106,11 @@
       "img":"papilio_peranthus.png",
       "credit":"Image credit: Mark Wong",
       "name":"Swallowtail butterfly"
+   },
+   "erythrina_crista_galli":{
+      "scientific":"Erythrina crista-galli",
+      "img":"erythrina_crista_galli.jpg",
+      "credit":"Creator: yio, Credit: Getty Images/iStockphoto, Copyright: Sergio Schnitzler",
+      "name":"Ceibo flower"
    }
 }

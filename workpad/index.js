@@ -1,15 +1,11 @@
 console.log("LOL");
 
-new EditorJS({
-    holderId: "editorjs1",
-    tools: {
-        image: SimpleImage,
-    }
-});
-
-new EditorJS({
-    holderId: "editorjs2",
-    tools: {
-        image: SimpleImage,
-    }
-});
+for (let i = 1; i < 3; i++) {
+    new EditorJS({
+        holderId: "editorjs"+i.toString(),
+        tools: {
+          image: SimpleImage,
+          embed: Embed,
+        },
+      });
+}

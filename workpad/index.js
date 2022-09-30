@@ -1,6 +1,14 @@
 console.log("LOL");
 
-var editor = new EditorJS({
+new EditorJS({
+    holderId: "editorjs1",
+    tools: {
+        image: SimpleImage,
+    }
+});
+
+new EditorJS({
+    holderId: "editorjs2",
     tools: {
         image: SimpleImage,
     }
